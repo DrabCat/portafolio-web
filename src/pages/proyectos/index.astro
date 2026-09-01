@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import { projects } from '../../data/projects';
+---
+
+<Layout title="Proyectos" currentPath="/proyectos">
+  <div class="space-y-16 md:space-y-20">
+    <!-- Header Sección Proyectos con Animación de Entrada -->
+    <header class="flex items-center justify-between pb-6 border-b border-neutral-800/80 animate-fade-up">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-editorial-mono font-normal tracking-tight text-neutral-100">
+        Proyectos
+      </h1>
+      <div class="px-5 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 text-xs font-editorial-mono uppercase tracking-[0.2em] text-neutral-300 shadow-sm">
+        WEB
+      </div>
+    </header>
+
+    <!-- Galería Dinámica -->
+    <section class="pb-12">
+      <ProjectGrid projects={projects} />
+    </section>
+  </div>
+</Layout>

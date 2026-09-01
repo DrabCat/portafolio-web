@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectInfo from '../../components/ProjectInfo.astro';
+import VideoShowcase from '../../components/VideoShowcase.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const nextProjects = {
+  michoacanissimo: {
+    name: "ECO ORBIT ADVENTURES",
+    slug: "eco-orbit-adventures",
+  },
+  "eco-orbit-adventures": {
+    name: "BYRAL SOLUTIONS",
+    slug: "byral-solutions",
+  },
+  "byral-solutions": {
+    name: "PULPO DIGITAL",
+    slug: "pulpo-digital",
+  },
+  "pulpo-digital": {
+    name: "MICHOACANÍSSIMO",
+    slug: "michoacanissimo",
+  },
+};
+
+const nextProject = nextProjects[project.slug];
+---
+
+<Layout title={project.name} currentPath="/proyectos">
+  <article class="relative">
+    <!-- Contenedor del Header e Información del Proyecto anclado sticky con desvanecimiento al hacer scroll -->
+    <div id="sticky-project-header" class="sticky top-[80px] z-10 will-change-[opacity,transform] transition-none">
+      <ProjectInfo project={project} />
+    </div>
+
+    <!-- Espaciador que otorga rango al desplazamiento y efecto parallax suave -->
+    <div class="pt-8 md:pt-16 pb-12 relative z-20">
+      <div id="parallax-video-hero" class="will-change-transform transition-none">
+        <VideoShowcase 
+          projectName={project.name}
+          thumbnail={project.thumbnail}
+          videos={project.videos} 
+        />
+      </div>
+      <!-- Descripción del proyecto -->
+      <section class="mt-24 max-w-4xl">
+        <h2 class="font-editorial-mono text-sm uppercase tracking-widest text-neutral-500 mb-6">
+          DESCRIPCIÓN
+        </h2>
+
+        <p class="font-editorial-mono text-xl md:text-2xl leading-relaxed text-neutral-200">
+          {project.description}
+        </p>
+      </section>
+      {nextProject && (
+        <section class="py-24 md:py-32 text-center">
+          <a
+            href={`/proyectos/${nextProject.slug}`}
+            class="group inline-flex flex-col items-center"
+          >
+            <span class="font-editorial-mono text-[10px] tracking-[0.25em] text-neutral-500 mb-4">
+              SIGUIENTE PROYECTO
+            </span>
+
+            <span class="font-editorial-mono text-xl md:text-2xl text-neutral-100 underline underline-offset-8 decoration-neutral-600 group-hover:decoration-neutral-100 transition-colors duration-300">
+              {nextProject.name} →
+            </span>
+          </a>
+        </section>
+      )}
+    </div>
+  </article>
+
+  <!-- Script optimizado ligado 100% al scroll del usuario -->
+  <script>
+    function setupEditorialScrollEffect() {
+      // Ignorar si el usuario configuró movilidad reducida
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      const header = document.getElementById('sticky-project-header');
+      const parallaxContainer = document.getElementById('parallax-video-hero');
+
+      if (!header || !parallaxContainer) return;
+
+      function onScroll() {
+        const scrollY = window.scrollY;
+        // Rango de scroll donde la información del proyecto se desvanece progresivamente
+        const fadeStart = 40;
+        const fadeEnd = 320;
+
+        if (scrollY <= fadeStart) {
+          header.style.opacity = '1';
+          header.style.transform = 'translateY(0px)';
+          header.style.pointerEvents = 'auto';
+        } else if (scrollY >= fadeEnd) {
+          header.style.opacity = '0';
+          header.style.transform = 'translateY(-20px)';
+          header.style.pointerEvents = 'none';
+        } else {
+          const progress = (scrollY - fadeStart) / (fadeEnd - fadeStart);
+          const opacity = 1 - progress;
+          const translateY = progress * -20;
+          
+          header.style.opacity = opacity.toFixed(3);
+          header.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+          header.style.pointerEvents = progress > 0.8 ? 'none' : 'auto';
+        }
+
+        // Parallax sutil (-12% de velocidad de desplazamiento) para la sección visual
+        if (scrollY < 600) {
+          const parallaxOffsetY = scrollY * -0.08;
+          parallaxContainer.style.transform = `translateY(${parallaxOffsetY.toFixed(1)}px)`;
+        } else {
+          parallaxContainer.style.transform = 'translateY(0px)';
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // Ejecución inicial al cargar
+    }
+
+    document.addEventListener('DOMContentLoaded', setupEditorialScrollEffect);
+    document.addEventListener('astro:page-load', setupEditorialScrollEffect);
+  </script>
+</Layout>

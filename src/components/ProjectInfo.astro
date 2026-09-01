@@ -1,0 +1,75 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const displayLink = project.link ? project.link.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
+---
+
+<section class="space-y-12 animate-fade-up">
+  <!-- Header del Proyecto (Nombre + Subtítulo SITIO WEB + Badge WEB) -->
+  <div class="flex items-start justify-between pb-8 border-b border-neutral-800/80 gap-4">
+    <div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-editorial-mono font-normal tracking-tight text-white mb-2">
+        {project.name}
+      </h1>
+      <p class="text-xs font-editorial-mono uppercase tracking-[0.25em] text-neutral-400">
+        SITIO WEB
+      </p>
+    </div>
+    
+    <div class="px-5 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 text-xs font-editorial-mono uppercase tracking-[0.2em] text-neutral-300 shadow-sm shrink-0">
+      WEB
+    </div>
+  </div>
+
+  <!-- Información del Proyecto (4 Columnas) con animación sutil -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 font-editorial-mono text-xs">
+    <!-- 1. CONTEXTO -->
+    <div class="space-y-2">
+      <span class="block uppercase text-neutral-500 font-bold tracking-[0.18em]">CONTEXTO</span>
+      <p class="text-neutral-200">{project.context || 'Sitio web'}</p>
+      <p class="text-neutral-400">{project.year}</p>
+    </div>
+
+    <!-- 2. MI ROL -->
+    <div class="space-y-2">
+      <span class="block uppercase text-neutral-500 font-bold tracking-[0.18em]">MI ROL</span>
+      <p class="text-neutral-200">Diseñadora web</p>
+      <p class="text-neutral-300">Implementación</p>
+    </div>
+
+    <!-- 3. HERRAMIENTAS -->
+    <div class="space-y-2">
+      <span class="block uppercase text-neutral-500 font-bold tracking-[0.18em]">HERRAMIENTAS</span>
+      {project.tools && project.tools.length > 0 ? (
+        project.tools.map((tool) => (
+          <p class="text-neutral-200">{tool}</p>
+        ))
+      ) : (
+        <p class="text-neutral-400">-</p>
+      )}
+    </div>
+
+    <!-- 4. LINK -->
+    <div class="space-y-2">
+      <span class="block uppercase text-neutral-500 font-bold tracking-[0.18em]">LINK</span>
+      {project.link ? (
+        <a 
+          href={project.link} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-block text-neutral-200 hover:text-white underline underline-offset-4 break-all transition-colors duration-200"
+        >
+          {displayLink}
+        </a>
+      ) : (
+        <p class="text-neutral-500">-</p>
+      )}
+    </div>
+  </div>
+</section>

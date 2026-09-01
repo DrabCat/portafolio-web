@@ -1,0 +1,10 @@
+{"message":"Enabling sessions with Netlify Blobs","label":"@astrojs/netlify","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Environment loaded","label":"vite","level":"info"}
+{"message":"Middleware loaded. Emulating features: aiGateway, blobs, database, edgeFunctions, functions, geolocation, headers, images, redirects, static.","label":"vite","level":"info"}
+{"message":"💭 Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run npx netlify init to get started.","label":"vite","level":"info"}
+{"message":"Generated 1ms","label":"types","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":" astro  v7.2.10 ready in 2412 ms\n┃ Local    http://localhost:4321/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
