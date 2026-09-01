@@ -31,7 +31,7 @@ export const projects: Project[] = [
   "/assets/videos/michoacanissimo-video2.mp4",
   "/assets/videos/michoacanissimo-video3.mp4"
   ],
-  description: "Michoacanissimo es un sitio web creado para presentar la identidad y propuesta gastronomica michoacana, destacando su tradición de más de 70 años, el objetivo del sitio era crear un espacio donde el usuario tuviera la posibilidad de explorar el menú y directamente hacer un pedido a través de WhatsApp",
+  description: "Michoacanissimo es un sitio web creado para presentar la identidad y propuesta gastronómica michoacana, destacando su tradición de más de 70 años, el objetivo del sitio era crear un espacio donde el usuario tuviera la posibilidad de explorar el menú y directamente hacer un pedido a través de WhatsApp",
   },
   {
     name: "ECO ORBIT ADVENTURES",
