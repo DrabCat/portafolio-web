@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 
 interface Props {
@@ -21,6 +22,7 @@ const { title, description = 'Portafolio de Daniela - Diseñadora Web UX/UI', cu
     <title>{title} | Daniela</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" />
+    
     <!-- Astro ClientRouter para transiciones suaves de página (SPA/ViewTransitions) -->
     <ClientRouter />
   </head>
@@ -28,6 +30,7 @@ const { title, description = 'Portafolio de Daniela - Diseñadora Web UX/UI', cu
     <div class="w-full flex-grow">
       <Navbar currentPath={currentPath} />
       <main class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-12 md:py-16">
+        <Analytics />
         <slot />
       </main>
     </div>
