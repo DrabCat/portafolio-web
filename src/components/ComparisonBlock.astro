@@ -1,0 +1,56 @@
+---
+interface Props {
+  leftTitle: string;
+  leftContent: string | string[];
+  rightTitle: string;
+  rightContent: string | string[];
+  class?: string;
+}
+
+const {
+  leftTitle,
+  leftContent,
+  rightTitle,
+  rightContent,
+  class: className = '',
+} = Astro.props;
+
+const leftItems = Array.isArray(leftContent) ? leftContent : [leftContent];
+const rightItems = Array.isArray(rightContent) ? rightContent : [rightContent];
+---
+
+<div class={`grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 my-6 ${className}`}>
+  <!-- Bloque Izquierdo / Desafío Inicial -->
+  <div class="p-6 rounded-xl bg-[#161616] border border-neutral-800/80 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-neutral-500" aria-hidden="true"></span>
+        <h4 class="font-editorial-mono text-xs uppercase tracking-[0.18em] text-neutral-300">
+          {leftTitle}
+        </h4>
+      </div>
+      <div class="space-y-2 text-sm text-neutral-400 font-sans leading-relaxed">
+        {leftItems.map((item) => (
+          <p>{item}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloque Derecho / Solución UX/UI -->
+  <div class="p-6 rounded-xl bg-neutral-900/70 border border-neutral-700/80 flex flex-col justify-between shadow-lg">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-neutral-100" aria-hidden="true"></span>
+        <h4 class="font-editorial-mono text-xs uppercase tracking-[0.18em] text-neutral-100 font-semibold">
+          {rightTitle}
+        </h4>
+      </div>
+      <div class="space-y-2 text-sm text-neutral-200 font-sans leading-relaxed">
+        {rightItems.map((item) => (
+          <p>{item}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+---
+export interface FlowStep {
+  stepNumber?: string | number;
+  title: string;
+  description?: string;
+}
+
+interface Props {
+  title?: string;
+  steps: FlowStep[];
+  class?: string;
+}
+
+const { title, steps = [], class: className = '' } = Astro.props;
+---
+
+<div class={`space-y-6 my-6 ${className}`}>
+  {title && (
+    <h4 class="font-editorial-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+      {title}
+    </h4>
+  )}
+
+  <!-- Contenedor adaptativo: Stepper conectado -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+    {steps.map((step, idx) => {
+      const stepNum = step.stepNumber ?? String(idx + 1).padStart(2, '0');
+      return (
+        <div class="relative p-5 rounded-xl bg-[#161616] border border-neutral-800/80 hover:border-neutral-700 transition-colors flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-editorial-mono text-xs font-bold text-neutral-400 group-hover:text-white transition-colors">
+                {stepNum}
+              </span>
+              {idx < steps.length - 1 && (
+                <span class="hidden lg:block text-neutral-600 text-xs font-editorial-mono" aria-hidden="true">
+                  →
+                </span>
+              )}
+            </div>
+            <h5 class="font-editorial-mono text-sm font-medium text-neutral-200 group-hover:text-white transition-colors mb-2">
+              {step.title}
+            </h5>
+            {step.description && (
+              <p class="text-xs text-neutral-400 font-sans leading-relaxed">
+                {step.description}
+              </p>
+            )}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>

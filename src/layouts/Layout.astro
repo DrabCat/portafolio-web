@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
 import { ClientRouter } from 'astro:transitions';
 import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
@@ -35,6 +36,7 @@ const { title, description = 'Portafolio de Daniela - Diseñadora Web UX/UI', cu
       </main>
     </div>
     <Footer />
+    <BackToTop />
 
     <!-- Script de IntersectionObserver eficiente para Scroll Reveal -->
     <script>

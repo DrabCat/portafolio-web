@@ -64,8 +64,13 @@ const { project } = Astro.props;
     </div>
   </div>
 
-  <!-- Nombre del proyecto -->
-  <h3 class="font-editorial-mono text-xs font-bold tracking-[0.16em] uppercase text-neutral-300 group-hover:text-white transition-colors duration-200 pl-0.5">
-    {project.name}
-  </h3>
+  <!-- Etiquetado del proyecto: Título descriptivo con mayor jerarquía visual y cliente más pequeño abajo -->
+  <div class="space-y-1.5 pl-0.5">
+    <h3 class="font-editorial-mono text-sm sm:text-base font-medium tracking-normal text-neutral-100 group-hover:text-white transition-colors duration-200 leading-snug">
+      {project.headline || project.name}
+    </h3>
+    <p class="font-editorial-mono text-xs tracking-[0.16em] uppercase text-neutral-400 group-hover:text-neutral-300 transition-colors duration-200">
+      {project.client || project.name}
+    </p>
+  </div>
 </a>

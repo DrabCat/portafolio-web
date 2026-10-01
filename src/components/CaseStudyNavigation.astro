@@ -1,0 +1,214 @@
+---
+interface SectionItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  mode?: 'all' | 'desktop' | 'mobile';
+}
+
+const { mode = 'all' } = Astro.props;
+
+const sections: SectionItem[] = [
+  { id: 'contexto', label: 'Contexto' },
+  { id: 'problema', label: 'Problema' },
+  { id: 'ai-workflow', label: 'AI Workflow' },
+  { id: 'outcome', label: 'Outcome' },
+  { id: 'improvements', label: 'Improvements' },
+];
+---
+
+<div class="case-study-nav-container">
+  <!-- NAVEGACIÓN MÓVIL (Sticky Horizontal Bar) -->
+  {(mode === 'all' || mode === 'mobile') && (
+    <nav
+      class="lg:hidden sticky top-[73px] z-30 bg-[#121212]/95 backdrop-blur-md border-y border-neutral-800/80 -mx-6 px-6 sm:-mx-12 sm:px-12 py-3 overflow-x-auto no-scrollbar font-editorial-mono text-xs tracking-wider"
+      aria-label="Navegación de secciones del caso de estudio"
+    >
+      <ul class="flex items-center gap-2 whitespace-nowrap min-w-max">
+        {sections.map((sec, idx) => (
+          <li class="flex items-center gap-2">
+            <a
+              href={`#${sec.id}`}
+              data-nav-id={sec.id}
+              class="case-study-mobile-link px-3 py-1.5 rounded-full text-neutral-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-neutral-500"
+            >
+              {sec.label}
+            </a>
+            {idx < sections.length - 1 && (
+              <span class="text-neutral-700 text-[10px] select-none" aria-hidden="true">·</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+
+  <!-- NAVEGACIÓN ESCRITORIO (Sidebar Items) -->
+  {(mode === 'all' || mode === 'desktop') && (
+    <nav
+      class="space-y-6 font-editorial-mono text-xs select-none"
+      aria-label="Navegación del caso de estudio"
+    >
+      <div class="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+        Índice del caso
+      </div>
+      
+      <ul class="space-y-4">
+        {sections.map((sec) => (
+          <li>
+            <a
+              href={`#${sec.id}`}
+              data-nav-id={sec.id}
+              class="case-study-desktop-link group flex items-center gap-3.5 py-1 text-neutral-400 hover:text-neutral-200 transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-neutral-500 rounded-sm"
+            >
+              <!-- Línea de estado con transición suave -->
+              <span
+                class="nav-indicator-line inline-block h-[1.5px] w-4 bg-neutral-700 rounded-full transition-all duration-300 ease-out group-hover:w-7 group-hover:bg-neutral-400 shrink-0"
+                aria-hidden="true"
+              ></span>
+              <!-- Etiqueta visible permanentemente (NUNCA oculta tras hover) -->
+              <span class="nav-label-text tracking-wide uppercase transition-colors duration-200">
+                {sec.label}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+</div>
+
+<style>
+  /* Estados activos para la barra horizontal en móvil */
+  .case-study-mobile-link.is-active {
+    color: #ededed;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Estados activos para el menú vertical en escritorio */
+  .case-study-desktop-link.is-active {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .case-study-desktop-link.is-active .nav-indicator-line {
+    width: 2.5rem; /* 40px - Línea más larga */
+    background-color: #ffffff;
+  }
+
+  /* Ocultar barra de scroll en navegadores WebKit y Firefox */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  function setupCaseStudyNavigation() {
+    const desktopLinks = document.querySelectorAll<HTMLAnchorElement>('.case-study-desktop-link');
+    const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('.case-study-mobile-link');
+    const allLinks = Array.from(desktopLinks).concat(Array.from(mobileLinks));
+
+    const sections = Array.from(desktopLinks.length > 0 ? desktopLinks : mobileLinks)
+      .map((link) => {
+        const id = link.getAttribute('data-nav-id');
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    // Función para activar el link correspondiente
+    function setActiveSection(activeId: string) {
+      desktopLinks.forEach((link) => {
+        const id = link.getAttribute('data-nav-id');
+        if (id === activeId) {
+          link.classList.add('is-active');
+        } else {
+          link.classList.remove('is-active');
+        }
+      });
+
+      mobileLinks.forEach((link) => {
+        const id = link.getAttribute('data-nav-id');
+        if (id === activeId) {
+          link.classList.add('is-active');
+          // Auto-scroll en móvil para mantener visible el elemento activo
+          link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          link.classList.remove('is-active');
+        }
+      });
+    }
+
+    // Click handler para desplazamiento suave
+    function handleClick(e: MouseEvent, targetId: string) {
+      e.preventDefault();
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        targetElement.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start',
+        });
+        setActiveSection(targetId);
+        history.pushState(null, '', `#${targetId}`);
+      }
+    }
+
+    allLinks.forEach((link) => {
+      const id = link.getAttribute('data-nav-id');
+      if (id) {
+        link.addEventListener('click', (e) => handleClick(e, id));
+      }
+    });
+
+    // IntersectionObserver para detectar la sección activa al hacer scroll
+    const observerOptions = {
+      root: null,
+      // Margen superior para compensar el navbar (offset ~104px) y margen inferior amplio
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+
+    // Activar la primera sección por defecto o según hash URL
+    const initialHash = window.location.hash.replace('#', '');
+    if (initialHash && sections.some((s) => s.id === initialHash)) {
+      setActiveSection(initialHash);
+    } else if (sections[0]) {
+      setActiveSection(sections[0].id);
+    }
+
+    // Escuchar activación de tab para recalcular posición activa
+    window.addEventListener('casestudy:activated', () => {
+      setTimeout(() => {
+        const currentHash = window.location.hash.replace('#', '');
+        if (currentHash && sections.some((s) => s.id === currentHash)) {
+          setActiveSection(currentHash);
+        } else if (sections[0]) {
+          setActiveSection(sections[0].id);
+        }
+      }, 50);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupCaseStudyNavigation);
+  document.addEventListener('astro:page-load', setupCaseStudyNavigation);
+</script>

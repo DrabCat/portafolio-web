@@ -2,6 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import ProjectInfo from '../../components/ProjectInfo.astro';
 import VideoShowcase from '../../components/VideoShowcase.astro';
+import CaseStudyTabs from '../../components/CaseStudyTabs.astro';
+import CaseStudyNavigation from '../../components/CaseStudyNavigation.astro';
+import CaseStudySection from '../../components/CaseStudySection.astro';
+import DataCard from '../../components/DataCard.astro';
+import ComparisonBlock from '../../components/ComparisonBlock.astro';
+import FlowDiagram from '../../components/FlowDiagram.astro';
 import { projects } from '../../data/projects';
 
 export function getStaticPaths() {
@@ -12,7 +18,8 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const nextProjects = {
+
+const nextProjects: Record<string, { name: string; slug: string }> = {
   michoacanissimo: {
     name: "ECO ORBIT ADVENTURES",
     slug: "eco-orbit-adventures",
@@ -32,104 +39,226 @@ const nextProjects = {
 };
 
 const nextProject = nextProjects[project.slug];
+const caseStudy = project.caseStudy;
 ---
 
 <Layout title={project.name} currentPath="/proyectos">
-  <article class="relative">
-    <!-- Contenedor del Header e Información del Proyecto anclado sticky con desvanecimiento al hacer scroll -->
-    <div id="sticky-project-header" class="sticky top-[80px] z-10 will-change-[opacity,transform] transition-none">
+  <article class="relative space-y-10">
+    <!-- Header e Información del Proyecto (Metadata existente preservada intacta) -->
+    <header id="project-header" class="animate-fade-up">
       <ProjectInfo project={project} />
-    </div>
+    </header>
 
-    <!-- Espaciador que otorga rango al desplazamiento y efecto parallax suave -->
-    <div class="pt-8 md:pt-16 pb-12 relative z-20">
-      <div id="parallax-video-hero" class="will-change-transform transition-none">
-        <VideoShowcase 
-          projectName={project.name}
-          thumbnail={project.thumbnail}
-          videos={project.videos} 
-        />
+    <!-- Layout Principal del Proyecto con Navegación Sticky en Escritorio -->
+    <div class="pt-2">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+        
+        <!-- Columna Izquierda: Sticky en Desktop (Tabs + Índice del Caso) -->
+        <aside class="lg:col-span-3 lg:sticky lg:top-[104px] lg:self-start lg:max-h-[calc(100vh-116px)] lg:overflow-y-auto no-scrollbar space-y-6">
+          <!-- Pestañas SUMMARY | CASE STUDY -->
+          <CaseStudyTabs defaultTab="summary" />
+
+          <!-- Índice de navegación del estudio de caso en escritorio -->
+          <div id="desktop-case-study-nav" class="hidden lg:block pt-2">
+            <CaseStudyNavigation mode="desktop" />
+          </div>
+        </aside>
+
+        <!-- Columna Derecha: Contenido que se desplaza (SUMMARY o CASE STUDY) -->
+        <main class="lg:col-span-9 space-y-4 min-w-0">
+          
+          <!-- PANEL 1: SUMMARY (Contenido y medios actuales con soporte para captions) -->
+          <div id="tab-panel-summary" role="tabpanel" aria-labelledby="tab-btn-summary">
+            <div class="space-y-16">
+              <VideoShowcase 
+                projectName={project.name}
+                thumbnail={project.thumbnail}
+                videos={project.videos}
+                captions={project.captions}
+              />
+
+              <!-- Descripción del proyecto -->
+              <section class="max-w-4xl pt-4">
+                <h2 class="font-editorial-mono text-xs uppercase tracking-widest text-neutral-400 mb-6 flex items-center gap-2">
+                  <span class="w-2 h-[2px] bg-neutral-600" aria-hidden="true"></span>
+                  DESCRIPCIÓN DEL PROYECTO
+                </h2>
+
+                <p class="font-editorial-mono text-lg sm:text-xl md:text-2xl leading-relaxed text-neutral-200 font-light">
+                  {project.description}
+                </p>
+              </section>
+
+              <!-- Enlace al Siguiente Proyecto -->
+              {nextProject && (
+                <section class="pt-16 pb-20 text-center border-t border-neutral-900">
+                  <a
+                    href={`/proyectos/${nextProject.slug}`}
+                    class="group inline-flex flex-col items-center"
+                  >
+                    <span class="font-editorial-mono text-[10px] tracking-[0.25em] text-neutral-400 mb-4 uppercase">
+                      SIGUIENTE PROYECTO
+                    </span>
+
+                    <span class="font-editorial-mono text-xl md:text-2xl text-neutral-100 underline underline-offset-8 decoration-neutral-600 group-hover:decoration-neutral-100 transition-colors duration-300">
+                      {nextProject.name} →
+                    </span>
+                  </a>
+                </section>
+              )}
+            </div>
+          </div>
+
+          <!-- PANEL 2: CASE STUDY (Estructura UX/UI con 5 secciones) -->
+          <div id="tab-panel-casestudy" role="tabpanel" aria-labelledby="tab-btn-casestudy" class="hidden">
+            <!-- Barra horizontal sticky para dispositivos móviles (solo < lg) -->
+            <div class="lg:hidden mb-6">
+              <CaseStudyNavigation mode="mobile" />
+            </div>
+
+            <div class="space-y-4">
+              {caseStudy && (
+                <>
+                  <!-- 1. CONTEXTO -->
+                  <CaseStudySection
+                    id="contexto"
+                    title="Contexto"
+                    subtitle="Entorno del proyecto y punto de partida"
+                  >
+                    <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
+                      {caseStudy.contexto.overview}
+                    </p>
+
+                    {caseStudy.contexto.dataCards && caseStudy.contexto.dataCards.length > 0 && (
+                      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        {caseStudy.contexto.dataCards.map((card) => (
+                          <DataCard
+                            value={card.value}
+                            label={card.label}
+                            description={card.description}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </CaseStudySection>
+
+                  <!-- 2. PROBLEMA -->
+                  <CaseStudySection
+                    id="problema"
+                    title="Problema"
+                    subtitle="Retos detectados y oportunidades de diseño"
+                  >
+                    <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
+                      {caseStudy.problema.overview}
+                    </p>
+
+                    {caseStudy.problema.comparison && (
+                      <ComparisonBlock
+                        leftTitle={caseStudy.problema.comparison.leftTitle}
+                        leftContent={caseStudy.problema.comparison.leftContent}
+                        rightTitle={caseStudy.problema.comparison.rightTitle}
+                        rightContent={caseStudy.problema.comparison.rightContent}
+                      />
+                    )}
+                  </CaseStudySection>
+
+                  <!-- 3. AI WORKFLOW -->
+                  <CaseStudySection
+                    id="ai-workflow"
+                    title="AI Workflow"
+                    subtitle="Integración de herramientas de IA en el proceso de diseño"
+                  >
+                    <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
+                      {caseStudy.aiWorkflow.overview}
+                    </p>
+
+                    {caseStudy.aiWorkflow.flowSteps && caseStudy.aiWorkflow.flowSteps.length > 0 && (
+                      <FlowDiagram
+                        title="Flujo de trabajo asistido por IA"
+                        steps={caseStudy.aiWorkflow.flowSteps}
+                      />
+                    )}
+                  </CaseStudySection>
+
+                  <!-- 4. OUTCOME -->
+                  <CaseStudySection
+                    id="outcome"
+                    title="Outcome"
+                    subtitle="Solución entregada e impacto en la experiencia"
+                  >
+                    <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
+                      {caseStudy.outcome.overview}
+                    </p>
+
+                    {caseStudy.outcome.keyPoints && caseStudy.outcome.keyPoints.length > 0 && (
+                      <div class="p-6 rounded-xl bg-[#161616] border border-neutral-800/80 space-y-3">
+                        <span class="block text-[11px] font-editorial-mono uppercase tracking-[0.2em] text-neutral-400 mb-2">
+                          Puntos Clave del Resultado
+                        </span>
+                        <ul class="space-y-2.5">
+                          {caseStudy.outcome.keyPoints.map((point) => (
+                            <li class="flex items-start gap-3 text-sm text-neutral-200">
+                              <span class="text-neutral-400 font-editorial-mono text-xs mt-0.5 select-none" aria-hidden="true">✔</span>
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </CaseStudySection>
+
+                  <!-- 5. IMPROVEMENTS -->
+                  <CaseStudySection
+                    id="improvements"
+                    title="Improvements"
+                    subtitle="Iteraciones futuras y oportunidades de evolución"
+                  >
+                    <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
+                      {caseStudy.improvements.overview}
+                    </p>
+
+                    {caseStudy.improvements.items && caseStudy.improvements.items.length > 0 && (
+                      <div class="p-6 rounded-xl bg-[#161616] border border-neutral-800/80 space-y-3">
+                        <span class="block text-[11px] font-editorial-mono uppercase tracking-[0.2em] text-neutral-400 mb-2">
+                          Líneas de Mejora e Iteración
+                        </span>
+                        <ul class="space-y-2.5">
+                          {caseStudy.improvements.items.map((item, idx) => (
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                              <span class="font-editorial-mono text-xs text-neutral-500 font-semibold shrink-0 mt-0.5">
+                                {String(idx + 1).padStart(2, '0')}.
+                              </span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </CaseStudySection>
+                </>
+              )}
+
+              <!-- Enlace al Siguiente Proyecto desde el Case Study -->
+              {nextProject && (
+                <section class="pt-16 pb-20 text-center border-t border-neutral-900">
+                  <a
+                    href={`/proyectos/${nextProject.slug}#casestudy`}
+                    class="group inline-flex flex-col items-center"
+                  >
+                    <span class="font-editorial-mono text-[10px] tracking-[0.25em] text-neutral-400 mb-4 uppercase">
+                      SIGUIENTE CASO DE ESTUDIO
+                    </span>
+
+                    <span class="font-editorial-mono text-xl md:text-2xl text-neutral-100 underline underline-offset-8 decoration-neutral-600 group-hover:decoration-neutral-100 transition-colors duration-300">
+                      {nextProject.name} →
+                    </span>
+                  </a>
+                </section>
+              )}
+            </div>
+          </div>
+        </main>
       </div>
-      <!-- Descripción del proyecto -->
-      <section class="mt-24 max-w-4xl">
-        <h2 class="font-editorial-mono text-sm uppercase tracking-widest text-neutral-500 mb-6">
-          DESCRIPCIÓN
-        </h2>
-
-        <p class="font-editorial-mono text-xl md:text-2xl leading-relaxed text-neutral-200">
-          {project.description}
-        </p>
-      </section>
-      {nextProject && (
-        <section class="py-24 md:py-32 text-center">
-          <a
-            href={`/proyectos/${nextProject.slug}`}
-            class="group inline-flex flex-col items-center"
-          >
-            <span class="font-editorial-mono text-[10px] tracking-[0.25em] text-neutral-500 mb-4">
-              SIGUIENTE PROYECTO
-            </span>
-
-            <span class="font-editorial-mono text-xl md:text-2xl text-neutral-100 underline underline-offset-8 decoration-neutral-600 group-hover:decoration-neutral-100 transition-colors duration-300">
-              {nextProject.name} →
-            </span>
-          </a>
-        </section>
-      )}
     </div>
   </article>
-
-  <!-- Script optimizado ligado 100% al scroll del usuario -->
-  <script>
-    function setupEditorialScrollEffect() {
-      // Ignorar si el usuario configuró movilidad reducida
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
-      }
-
-      const header = document.getElementById('sticky-project-header');
-      const parallaxContainer = document.getElementById('parallax-video-hero');
-
-      if (!header || !parallaxContainer) return;
-
-      function onScroll() {
-        const scrollY = window.scrollY;
-        // Rango de scroll donde la información del proyecto se desvanece progresivamente
-        const fadeStart = 40;
-        const fadeEnd = 320;
-
-        if (scrollY <= fadeStart) {
-          header.style.opacity = '1';
-          header.style.transform = 'translateY(0px)';
-          header.style.pointerEvents = 'auto';
-        } else if (scrollY >= fadeEnd) {
-          header.style.opacity = '0';
-          header.style.transform = 'translateY(-20px)';
-          header.style.pointerEvents = 'none';
-        } else {
-          const progress = (scrollY - fadeStart) / (fadeEnd - fadeStart);
-          const opacity = 1 - progress;
-          const translateY = progress * -20;
-          
-          header.style.opacity = opacity.toFixed(3);
-          header.style.transform = `translateY(${translateY.toFixed(1)}px)`;
-          header.style.pointerEvents = progress > 0.8 ? 'none' : 'auto';
-        }
-
-        // Parallax sutil (-12% de velocidad de desplazamiento) para la sección visual
-        if (scrollY < 600) {
-          const parallaxOffsetY = scrollY * -0.08;
-          parallaxContainer.style.transform = `translateY(${parallaxOffsetY.toFixed(1)}px)`;
-        } else {
-          parallaxContainer.style.transform = 'translateY(0px)';
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // Ejecución inicial al cargar
-    }
-
-    document.addEventListener('DOMContentLoaded', setupEditorialScrollEffect);
-    document.addEventListener('astro:page-load', setupEditorialScrollEffect);
-  </script>
 </Layout>

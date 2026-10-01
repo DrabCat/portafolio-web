@@ -1,0 +1,26 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  description?: string;
+  class?: string;
+}
+
+const { value, label, description, class: className = '' } = Astro.props;
+---
+
+<div class={`p-5 sm:p-6 rounded-xl bg-[#181818] border border-neutral-800/80 transition-all duration-300 hover:border-neutral-700 hover:shadow-lg flex flex-col justify-between ${className}`}>
+  <div>
+    <span class="block text-[11px] font-editorial-mono uppercase tracking-[0.2em] text-neutral-400 mb-2">
+      {label}
+    </span>
+    <div class="text-2xl sm:text-3xl font-editorial-mono font-medium text-neutral-100 tracking-tight mb-2">
+      {value}
+    </div>
+  </div>
+  {description && (
+    <p class="text-xs font-sans text-neutral-400 leading-relaxed mt-2">
+      {description}
+    </p>
+  )}
+</div>

@@ -1,0 +1,147 @@
+---
+interface Props {
+  defaultTab?: 'summary' | 'casestudy';
+}
+
+const { defaultTab = 'summary' } = Astro.props;
+---
+
+<div class="border-b border-neutral-800/80 mb-8">
+  <div
+    class="flex items-center gap-6 sm:gap-8 font-editorial-mono text-xs uppercase tracking-[0.2em]"
+    role="tablist"
+    aria-label="Selector de vistas del proyecto"
+  >
+    <button
+      id="tab-btn-summary"
+      role="tab"
+      aria-selected={defaultTab === 'summary' ? 'true' : 'false'}
+      aria-controls="tab-panel-summary"
+      tabindex={defaultTab === 'summary' ? 0 : -1}
+      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-neutral-500"
+    >
+      SUMMARY
+    </button>
+
+    <button
+      id="tab-btn-casestudy"
+      role="tab"
+      aria-selected={defaultTab === 'casestudy' ? 'true' : 'false'}
+      aria-controls="tab-panel-casestudy"
+      tabindex={defaultTab === 'casestudy' ? 0 : -1}
+      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-neutral-500"
+    >
+      CASE STUDY
+    </button>
+  </div>
+</div>
+
+<style>
+  .case-study-tab-btn[aria-selected="true"] {
+    color: #ffffff;
+    font-weight: 700;
+    border-color: #ffffff;
+  }
+
+  .case-study-tab-btn[aria-selected="false"] {
+    color: #888888;
+    border-color: transparent;
+  }
+
+  .case-study-tab-btn[aria-selected="false"]:hover {
+    color: #ededed;
+  }
+</style>
+
+<script>
+  function setupProjectTabs() {
+    const summaryBtn = document.getElementById('tab-btn-summary') as HTMLButtonElement | null;
+    const caseStudyBtn = document.getElementById('tab-btn-casestudy') as HTMLButtonElement | null;
+    const summaryPanel = document.getElementById('tab-panel-summary');
+    const caseStudyPanel = document.getElementById('tab-panel-casestudy');
+    const desktopCaseStudyNav = document.getElementById('desktop-case-study-nav');
+
+    if (!summaryBtn || !caseStudyBtn || !summaryPanel || !caseStudyPanel) return;
+
+    const tabs = [summaryBtn, caseStudyBtn];
+
+    function activateTab(target: 'summary' | 'casestudy', updateHash = true) {
+      if (target === 'summary') {
+        summaryBtn?.setAttribute('aria-selected', 'true');
+        summaryBtn?.setAttribute('tabindex', '0');
+        caseStudyBtn?.setAttribute('aria-selected', 'false');
+        caseStudyBtn?.setAttribute('tabindex', '-1');
+
+        summaryPanel?.classList.remove('hidden');
+        caseStudyPanel?.classList.add('hidden');
+        desktopCaseStudyNav?.classList.add('hidden');
+
+        if (updateHash) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      } else {
+        caseStudyBtn?.setAttribute('aria-selected', 'true');
+        caseStudyBtn?.setAttribute('tabindex', '0');
+        summaryBtn?.setAttribute('aria-selected', 'false');
+        summaryBtn?.setAttribute('tabindex', '-1');
+
+        caseStudyPanel?.classList.remove('hidden');
+        summaryPanel?.classList.add('hidden');
+        desktopCaseStudyNav?.classList.remove('hidden');
+
+        if (updateHash && !window.location.hash.includes('contexto') && !window.location.hash.includes('problema') && !window.location.hash.includes('ai-workflow') && !window.location.hash.includes('outcome') && !window.location.hash.includes('improvements')) {
+          history.replaceState(null, '', '#casestudy');
+        }
+
+        // Despachar evento para recalcular IntersectionObserver de navegación
+        window.dispatchEvent(new CustomEvent('casestudy:activated'));
+      }
+    }
+
+    summaryBtn.addEventListener('click', () => activateTab('summary'));
+    caseStudyBtn.addEventListener('click', () => activateTab('casestudy'));
+
+    // Soporte para navegación con flechas del teclado
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('keydown', (e) => {
+        let newIndex = index;
+        if (e.key === 'ArrowRight') {
+          newIndex = (index + 1) % tabs.length;
+        } else if (e.key === 'ArrowLeft') {
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+        } else if (e.key === 'Home') {
+          newIndex = 0;
+        } else if (e.key === 'End') {
+          newIndex = tabs.length - 1;
+        } else {
+          return;
+        }
+
+        e.preventDefault();
+        const targetTab = tabs[newIndex];
+        targetTab.focus();
+        activateTab(targetTab === summaryBtn ? 'summary' : 'casestudy');
+      });
+    });
+
+    // Detectar hash en la URL para abrir el tab correspondiente
+    const caseStudySectionHashes = ['#casestudy', '#contexto', '#problema', '#ai-workflow', '#outcome', '#improvements'];
+    const currentHash = window.location.hash;
+    if (caseStudySectionHashes.includes(currentHash)) {
+      activateTab('casestudy', false);
+      if (currentHash !== '#casestudy') {
+        const targetEl = document.querySelector(currentHash);
+        if (targetEl) {
+          setTimeout(() => {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
+      }
+    } else {
+      activateTab('summary', false);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', setupProjectTabs);
+  document.addEventListener('astro:page-load', setupProjectTabs);
+</script>
