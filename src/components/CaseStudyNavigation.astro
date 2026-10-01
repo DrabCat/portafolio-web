@@ -32,7 +32,7 @@ const sections: SectionItem[] = [
             <a
               href={`#${sec.id}`}
               data-nav-id={sec.id}
-              class="case-study-mobile-link px-3 py-1.5 rounded-full text-neutral-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-neutral-500"
+              class="case-study-mobile-link px-3 py-1.5 rounded-full text-neutral-400 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
             >
               {sec.label}
             </a>
@@ -61,7 +61,7 @@ const sections: SectionItem[] = [
             <a
               href={`#${sec.id}`}
               data-nav-id={sec.id}
-              class="case-study-desktop-link group flex items-center gap-3.5 py-1 text-neutral-400 hover:text-neutral-200 transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-neutral-500 rounded-sm"
+              class="case-study-desktop-link group flex items-center gap-3.5 py-1 text-neutral-400 hover:text-neutral-200 transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500 rounded-sm"
             >
               <!-- Línea de estado con transición suave -->
               <span
@@ -170,23 +170,26 @@ const sections: SectionItem[] = [
       }
     });
 
-    // IntersectionObserver para detectar la sección activa al hacer scroll
-    const observerOptions = {
-      root: null,
-      // Margen superior para compensar el navbar (offset ~104px) y margen inferior amplio
-      rootMargin: '-20% 0px -60% 0px',
-      threshold: 0,
-    };
+    function updateActiveSection() {
+      const activationPoint = 180;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+      let activeSection = sections[0];
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= activationPoint) {
+          activeSection = section;
         }
       });
-    }, observerOptions);
 
-    sections.forEach((section) => observer.observe(section));
+      if (activeSection) {
+        setActiveSection(activeSection.id);
+      }
+    }
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
 
     // Activar la primera sección por defecto o según hash URL
     const initialHash = window.location.hash.replace('#', '');
