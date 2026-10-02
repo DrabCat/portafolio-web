@@ -147,8 +147,8 @@ export const projects: Project[] = [
           {
             stepNumber: "03",
             title: "Code Refinement",
-            tool: "Antigravity",
-            toolIcon: "/assets/icons/antigravity.svg",
+            tool: "Codex",
+            toolIcon: "/assets/icons/codex.svg",
             description: "Iteraciones técnicas, correcciones y ajustes sobre la implementación."
           }
         ]
