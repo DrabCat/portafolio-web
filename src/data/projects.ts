@@ -203,82 +203,71 @@ export const projects: Project[] = [
     ],
     description: "Eco Orbit Adventures es un ecoparque ubicado en Puerto Vallarta, dirigido tanto al turismo nacional como internacional. El sitio fue desarrollado como una plataforma digital para la promoción, venta y reserva de tours, integrando FareHarbor como sistema de gestión de reservas y disponibilidad.",
     caseStudy: {
-      contexto: {
-        overview: "Eco Orbit Adventures opera actividades de ecoturismo y expediciones de aventura en Puerto Vallarta, Jalisco. Su público abarca desde familias locales hasta turistas internacionales que buscan reservar experiencias al aire libre antes o durante su estancia.",
-        dataCards: [
+      "contexto": {
+        "overview": "Eco-Orbit Adventures es una plataforma de experiencias turísticas desarrollada en WordPress. El proyecto partió de un sitio existente que utilizaba WooCommerce para presentar y vender tours, pero que no estaba generando el tráfico ni las compras esperadas. El objetivo fue rediseñar la experiencia y replantear la forma en que los usuarios consultaban y reservaban las actividades.",
+        "dataCards": [
           {
-            value: "Turismo Global",
-            label: "Audiencia Mixta",
-            description: "Experiencia pensada para visitantes locales y viajeros internacionales."
+            "value": "WORDPRESS",
+            "label": "Plataforma Web",
+            "description": "Rediseño realizado sobre la plataforma existente, manteniendo WordPress como CMS."
           },
           {
-            value: "FareHarbor",
-            label: "Motor de Reservas",
-            description: "Sincronización en tiempo real de calendarios, cupos y pasarela de pago."
+            "value": "FAREHARBOR",
+            "label": "Sistema de Reservas",
+            "description": "Integración de una herramienta especializada para gestionar la reserva y pago de experiencias turísticas."
           },
           {
-            value: "WordPress",
-            label: "Gestión Dinámica",
-            description: "Facilidad de administración para actualizar paquetes y precios de temporada."
+            "value": "UX/UI",
+            "label": "Mi Rol",
+            "description": "Diseño de la nueva experiencia y organización visual del contenido y los tours."
           }
         ]
       },
-      problema: {
-        overview: "La contratación de tours de aventura implica dudas cruciales para el viajero: niveles de esfuerzo físico, equipo necesario, horarios de salida y disponibilidad. La ausencia de un flujo de información claro provocaba consultas telefónicas constantes y pérdida de reservas ante competidores con procesos digitales más ágiles.",
-        comparison: {
-          leftTitle: "Desafío Inicial",
-          leftContent: [
-            "Información fragmentada de itinerarios, restricciones físicas y políticas de cancelación.",
-            "Incertidumbre sobre cupos en tiempo real para viajeros con itinerario ajustado.",
-            "Proceso manual de confirmación que retrasaba el cierre de reservas."
+      "problema": {
+        "overview": "El sitio utilizaba WordPress y WooCommerce como plataforma para mostrar y vender experiencias, pero no estaba consiguiendo el tráfico ni las compras esperadas. El reto consistió en replantear la experiencia para presentar los tours de forma más atractiva y facilitar el paso entre descubrir una actividad y comenzar el proceso de reserva.",
+        "comparison": {
+          "leftTitle": "Desafío Inicial",
+          "leftContent": [
+            "Baja generación de tráfico y compras desde el sitio.",
+            "Experiencias turísticas presentadas dentro de una estructura de ecommerce tradicional.",
+            "Necesidad de facilitar el acceso a información y reserva de cada actividad."
           ],
-          rightTitle: "Enfoque UX/UI",
-          rightContent: [
-            "Fichas de producto con etiquetas claras de duración, dificultad y qué llevar.",
-            "Visualización transparente de disponibilidad e integración nativa del widget de FareHarbor.",
-            "Flujo de reserva responsive accesible tanto desde computadora como desde dispositivos móviles."
+          "rightTitle": "Enfoque UX/UI",
+          "rightContent": [
+            "Rediseño visual y reorganización de la presentación de las experiencias.",
+            "Estructuración de los tours como contenido principal de la plataforma.",
+            "Sustitución de WooCommerce por FareHarbor para el flujo de reservas y pagos."
           ]
         }
       },
-      aiWorkflow: {
-        overview: "Uso de herramientas de inteligencia artificial para agilizar la producción de contenidos estructurados y la diagramación de interfaces:",
-        flowSteps: [
+      "aiWorkflow": {
+        "overview": "La inteligencia artificial tuvo una participación limitada en este proyecto y se utilizó principalmente como herramienta de apoyo para la redacción y refinamiento de contenido.",
+        "flowSteps": [
           {
-            stepNumber: "01",
-            title: "Estructuración de Itinerarios",
-            description: "Uso de IA para resumir extensas descripciones de tours en listas de especificaciones claras y de lectura rápida."
-          },
-          {
-            stepNumber: "02",
-            title: "Prototipado en Figma",
-            description: "Generación de propuestas de layout para tarjetas de actividad y bloques comparativos de paquetes de aventura."
-          },
-          {
-            stepNumber: "03",
-            title: "Mapeo del Embudo de Reserva",
-            description: "Análisis asistido de los puntos de fricción entre el detalle del tour y la ventana emergente de reserva."
-          },
-          {
-            stepNumber: "04",
-            title: "Adaptación Multidispositivo",
-            description: "Optimización de la disposición de controles táctiles en pantallas móviles para usuarios en ruta."
+            "stepNumber": "01",
+            "title": "Microcopy",
+            "tool": "ChatGPT",
+            "toolIcon": "/assets/icons/chatgpt.svg",
+            "description": "Apoyo para desarrollar y refinar textos relacionados con las experiencias, servicios y llamadas a la acción del sitio."
           }
         ]
       },
-      outcome: {
-        overview: "Se consolidó una plataforma web sólida y atractiva que proyecta seguridad y profesionalismo, permitiendo a los turistas consultar detalles completos y formalizar su reserva con confirmación inmediata.",
-        keyPoints: [
-          "Presentación inmersiva de actividades mediante recursos multimedia y datos técnicos claros.",
-          "Conexión directa con FareHarbor para gestión autónoma de disponibilidad y pagos.",
-          "Arquitectura orientada a la navegación móvil para reservas de último minuto en destino."
+      "outcome": {
+        "overview": "El resultado fue una nueva experiencia web construida sobre WordPress, con una presentación renovada de las actividades y un flujo de reserva conectado con FareHarbor. El proyecto mantuvo la infraestructura existente mientras replanteó la forma de presentar las experiencias y acceder a su contratación.",
+        "keyPoints": [
+          "Rediseño UX/UI manteniendo WordPress como plataforma.",
+          "Presentación estructurada de tours y experiencias.",
+          "Integración de FareHarbor para reservas y pagos.",
+          "Experiencia responsive para consulta desde diferentes dispositivos."
         ]
       },
-      improvements: {
-        overview: "Oportunidades de mejora continua identificadas para próximas fases del producto:",
-        items: [
-          "Filtro inteligente de actividades según tipo de grupo (familias con niños, parejas, amantes de la adrenalina).",
-          "Módulo de preguntas frecuentes específicas dentro de cada ficha de actividad.",
-          "Galería de fotos y videos reales subidos por comensales y visitantes tras su expedición."
+      "improvements": {
+        "overview": "",
+        "items": [
+          "PERFORMANCE / Reducir tiempos de carga / Optimizaría recursos visuales y elementos del sitio para reducir los tiempos de carga, especialmente en dispositivos móviles.",
+          "CONTENT PRIORITY / Mostrar los tours antes / Daría mayor prioridad a los tours dentro del recorrido inicial para reducir la distancia entre la llegada al sitio y la exploración de las experiencias disponibles.",
+          "PERSISTENT CONTACT / Integrar WhatsApp / Incorporaría WhatsApp como canal de contacto visible durante el recorrido para facilitar consultas antes de iniciar una reserva.",
+          "STORYTELLING / Reforzar la experiencia visual / Evolucionaría el diseño hacia una narrativa más inmersiva que comunique mejor la experiencia de aventura y el entorno de cada tour mediante fotografía, contenido y storytelling."
         ]
       }
     }
@@ -311,82 +300,77 @@ export const projects: Project[] = [
     ],
     description: "Byral Solutions es una agencia de desarrollo especializada en el diseño e implementación de soluciones digitales personalizadas y automatizadas. El objetivo del sitio fue crear una presencia digital clara y profesional que comunicara el valor de sus servicios, explicara de forma accesible sus soluciones y facilitara la captación de leads potenciales mediante una experiencia enfocada en la conversión.",
     caseStudy: {
-      contexto: {
-        overview: "BYRAL Solutions es una empresa tecnológica especializada en optimización operativa, automatización de procesos e integración de herramientas de inteligencia artificial para negocios que requieren escalar su infraestructura.",
-        dataCards: [
+      "contexto": {
+        "overview": "BYRAL Solutions es un proyecto tecnológico en desarrollo enfocado en servicios de automatización, inteligencia artificial y soluciones digitales para empresas. Mi participación comenzó desde la construcción de la identidad visual y continuó con el diseño de su primera presencia web, actualmente en proceso de evolución.",
+        "dataCards": [
           {
-            value: "B2B",
-            label: "Público Objetivo",
-            description: "Directores de operaciones, tecnología y fundadores de empresas."
+            "value": "BRANDING + UX/UI",
+            "label": "Mi participación",
+            "description": "Desarrollo de identidad visual y diseño de la primera experiencia web."
           },
           {
-            value: "Figma",
-            label: "Sistema de Diseño",
-            description: "Diseño modular de componentes con identidad visual contemporánea."
+            "value": "AUTOMATIZACIÓN + IA",
+            "label": "Oferta de servicios",
+            "description": "Soluciones digitales orientadas a optimizar procesos y operaciones."
           },
           {
-            value: "Leads",
-            label: "Meta de Negocio",
-            description: "Generación de contactos calificados para consultoría técnica personalizada."
+            "value": "EN DESARROLLO",
+            "label": "Estado del producto",
+            "description": "Primera versión publicada mientras se continúa definiendo y evolucionando la oferta."
           }
         ]
       },
-      problema: {
-        overview: "Los servicios de automatización e IA a menudo se explican con jerga técnica compleja que no comunica con claridad el retorno de inversión a los tomadores de decisiones. Era indispensable crear una narrativa visual sobria y comprensible que explicara el alcance de cada solución sin abrumar.",
-        comparison: {
-          leftTitle: "Desafío Inicial",
-          leftContent: [
-            "Explicaciones abstractas que generaban dudas sobre la aplicabilidad práctica de los servicios.",
-            "Dificultad para diferenciar la oferta de automatización frente a software genérico.",
-            "Formularios genéricos con baja tasa de respuesta de prospectos calificados."
+      "problema": {
+        "overview": "Al tratarse de un proyecto nuevo, BYRAL necesitaba construir una presencia digital desde cero y comunicar servicios técnicos que todavía se encontraban en proceso de definición. El principal reto de diseño fue crear una primera estructura capaz de presentar la propuesta de la empresa de manera comprensible y proporcionar un punto de contacto para potenciales clientes.",
+        "comparison": {
+          "leftTitle": "Desafío Inicial",
+          "leftContent": [
+            "Proyecto nuevo sin una presencia digital consolidada.",
+            "Oferta de servicios tecnológicos todavía en evolución.",
+            "Necesidad de explicar automatización e IA sin depender únicamente de lenguaje técnico."
           ],
-          rightTitle: "Enfoque UX/UI",
-          rightContent: [
-            "Presentación modular de soluciones por caso de uso e impacto directo en eficiencia operativa.",
-            "Diagramas claros de flujo de datos y automatización que facilitan el entendimiento rápido.",
-            "Llamadas a la acción estratégicas para solicitar un diagnóstico operativo inicial."
+          "rightTitle": "Enfoque UX/UI",
+          "rightContent": [
+            "Construcción de una identidad visual aplicada consistentemente a la experiencia web.",
+            "Organización inicial de los servicios en bloques de contenido comprensibles.",
+            "Incorporación de llamadas a la acción y puntos de contacto dentro del recorrido."
           ]
         }
       },
-      aiWorkflow: {
-        overview: "Integración de IA para sintetizar conceptos técnicos de software y acelerar la producción de layouts:",
-        flowSteps: [
+      "aiWorkflow": {
+        "overview": "La inteligencia artificial se utilizó como herramienta de apoyo durante la creación de la primera versión del sitio, principalmente para refinar contenido y apoyar la exploración de la interfaz.",
+        "flowSteps": [
           {
-            stepNumber: "01",
-            title: "Desglose de Servicios",
-            description: "Uso de IA para traducir capacidades de código y automatización en propuestas de valor comprensibles para directivos."
+            "stepNumber": "01",
+            "title": "Microcopy",
+            "tool": "ChatGPT",
+            "toolIcon": "/assets/icons/chatgpt.svg",
+            "description": "Apoyo para desarrollar y refinar textos orientados a explicar los servicios de forma más accesible."
           },
           {
-            stepNumber: "02",
-            title: "Arquitectura de Diagramas",
-            description: "Esquematización de flujos de trabajo que muestran cómo se conectan herramientas existentes con pipelines de IA."
-          },
-          {
-            stepNumber: "03",
-            title: "Sistema de Componentes",
-            description: "Creación de tarjetas de producto, listas de características y badges técnicos en Figma."
-          },
-          {
-            stepNumber: "04",
-            title: "Optimización de Conversión",
-            description: "Alineación de llamadas a la acción en puntos clave del recorrido de lectura del usuario."
+            "stepNumber": "02",
+            "title": "UI Exploration",
+            "tool": "Figma Make",
+            "description": "Apoyo para explorar y desarrollar la primera versión de la landing a partir de la dirección visual definida."
           }
         ]
       },
-      outcome: {
-        overview: "Se diseñó una experiencia de interfaz sobria y profesional que posiciona a BYRAL Solutions como un socio estratégico confiable, simplificando la comprensión de servicios técnicos de alta gama y guiando a los visitantes hacia la solicitud de diagnóstico.",
-        keyPoints: [
-          "Diseño visual refinado en tonos oscuros alineado con el sector tecnológico vanguardista.",
-          "Explicación estructurada de soluciones de automatización orientadas a resultados de negocio.",
-          "Flujo de contacto claro y directo para agendar sesiones con el equipo técnico."
+      "outcome": {
+        "overview": "La primera versión establece una base visual y estructural para la presencia digital de BYRAL Solutions, presentando su propuesta y principales servicios dentro de una experiencia unificada. Al tratarse de un producto todavía en desarrollo, esta versión funciona como punto de partida para futuras iteraciones de arquitectura, contenido y experiencia.",
+        "keyPoints": [
+          "Identidad visual trasladada a una primera experiencia digital.",
+          "Estructura inicial para comunicar servicios de automatización e IA.",
+          "Puntos de contacto para potenciales clientes.",
+          "Base preparada para evolucionar conforme se defina la oferta del proyecto."
         ]
       },
-      improvements: {
-        overview: "Líneas de mejora planificadas para próximas etapas del sitio web:",
-        items: [
-          "Calculadora interactiva para estimar horas y costos ahorrados mediante automatización.",
-          "Casos de éxito documentados por sector industrial (logística, finanzas, comercio electrónico).",
-          "Asistente conversacional para precalificar necesidades técnicas de prospectos antes de la llamada."
+      "improvements": {
+        "overview": "",
+        "items": [
+          "RESEARCH / Validar necesidades reales / Realizar investigación con potenciales usuarios y negocios para comprender qué problemas buscan resolver mediante automatización y qué información necesitan antes de contactar a un proveedor.",
+          "INFORMATION ARCHITECTURE / Replantear la estructura de servicios / Revisar la arquitectura de información conforme se consolide la oferta de BYRAL, priorizando los servicios y casos de uso más relevantes para el usuario.",
+          "VALUE COMMUNICATION / Explicar servicios mediante casos de uso / Evolucionar la comunicación desde descripciones generales hacia escenarios concretos que permitan entender qué proceso se automatiza, cómo funciona y qué valor aporta.",
+          "PRODUCT EVOLUTION / Integrar nuevos productos con mayor claridad / Definir cómo incorporar herramientas adicionales, como el generador de QR, sin diluir la propuesta principal ni generar una arquitectura de servicios fragmentada."
         ]
       }
     }
@@ -419,82 +403,75 @@ export const projects: Project[] = [
     ],
     description: "Pulpo Digital es una agencia de diseño y desarrollo digital enfocada en crear experiencias web para marcas y negocios. El proyecto tuvo como objetivo desarrollar una plataforma que comunicara la personalidad de la agencia, mostrara su capacidad creativa y técnica, y guiara al usuario hacia el contacto de manera natural. La experiencia combina una identidad visual dinámica con una estructura clara y orientada a la conversión.",
     caseStudy: {
-      contexto: {
-        overview: "Pulpo Digital es una agencia creativa que desarrolla identidades de marca, estrategias digitales y sitios web de alto impacto estético. Su plataforma web debía reflejar la vanguardia visual del estudio manteniendo un rendimiento técnico impecable.",
-        dataCards: [
+      "contexto": {
+        "overview": "Pulpo Digital es una agencia creativa que necesitaba renovar su presencia web para alinearla con la evolución de su identidad. El sitio existente se percibía desactualizado, tenía una estructura muy estática y presentaba el contenido como una sucesión de bloques similares a diapositivas, por lo que se planteó un rediseño completo de la experiencia.",
+        "dataCards": [
           {
-            value: "Editorial",
-            label: "Identidad Visual",
-            description: "Composición tipográfica y ritmo visual dinámico en cada sección."
+            "value": "REDISEÑO WEB",
+            "label": "Presencia Digital",
+            "description": "Renovación completa del sitio para alinearlo con la identidad actual de la agencia."
           },
           {
-            value: "Astro",
-            label: "Framework Web",
-            description: "Carga ágil y arquitectura modular para mostrar proyectos multimedia."
+            "value": "DISEÑO + DESARROLLO",
+            "label": "Mi Rol",
+            "description": "Responsabilidad sobre el diseño UX/UI y la implementación front-end del proyecto."
           },
           {
-            value: "Creativo",
-            label: "Enfoque de Estudio",
-            description: "Equilibrio entre diseño gráfico expresivo y arquitectura funcional."
+            "value": "NETLIFY",
+            "label": "Deploy",
+            "description": "Configuración y publicación del sitio para su lanzamiento web."
           }
         ]
       },
-      problema: {
-        overview: "La presencia digital anterior del estudio presentaba sus trabajos de manera estática y convencional, sin transmitir el dinamismo ni el rigor conceptual detrás de cada entregable de diseño, restando impacto al momento de competir por proyectos de alto nivel.",
-        comparison: {
-          leftTitle: "Desafío Inicial",
-          leftContent: [
-            "Presentación estática de proyectos sin contexto narrativo del proceso creativo.",
-            "Tiempos de carga lentos por falta de optimización de activos multimedia pesados.",
-            "Falta de coherencia entre la calidad de los proyectos y la web propia del estudio."
+      "problema": {
+        "overview": "La presencia digital anterior ya no representaba adecuadamente la identidad de Pulpo Digital. Además de una estética desactualizada, la estructura era predominantemente estática y hacía que la navegación se percibiera como una secuencia de diapositivas, limitando las posibilidades de construir una experiencia más dinámica para presentar la agencia y su trabajo.",
+        "comparison": {
+          "leftTitle": "Desafío Inicial",
+          "leftContent": [
+            "Identidad visual del sitio desactualizada respecto a la marca.",
+            "Experiencia predominantemente estática.",
+            "Estructura basada en grandes bloques consecutivos con poca continuidad visual."
           ],
-          rightTitle: "Enfoque UX/UI",
-          rightContent: [
-            "Rediseño editorial con transiciones suaves y visualización inmersiva de trabajos.",
-            "Optimización de video y componentes en Astro para lograr máxima velocidad de carga.",
-            "Estructura orientada al descubrimiento intuitivo y llamada al contacto transparente."
+          "rightTitle": "Enfoque UX/UI",
+          "rightContent": [
+            "Renovación de la dirección visual del sitio.",
+            "Diseño de una experiencia con mayor movimiento e interacción.",
+            "Implementación responsive de la nueva propuesta.",
+            "Desarrollo y publicación del producto final."
           ]
         }
       },
-      aiWorkflow: {
-        overview: "Implementación de IA para explorar variantes tipográficas y acelerar el refinamiento de código front-end:",
-        flowSteps: [
+      "aiWorkflow": {
+        "overview": "La inteligencia artificial se utilizó como herramienta de apoyo durante la implementación, principalmente para trasladar el diseño a código y desarrollar algunas de las interacciones y animaciones planteadas para la experiencia.",
+        "flowSteps": [
           {
-            stepNumber: "01",
-            title: "Exploración de Layouts",
-            description: "Pruebas de composiciones asimétricas y ritmo tipográfico asistidas por herramientas de IA generativa."
+            "stepNumber": "01",
+            "title": "Design to Code",
+            "description": "Traducción e iteración de componentes visuales durante la implementación del diseño."
           },
           {
-            stepNumber: "02",
-            title: "Optimización de Assets",
-            description: "Asistencia de scripts con IA para comprimir y convertir videos y gráficos sin pérdida visible de calidad."
-          },
-          {
-            stepNumber: "03",
-            title: "Componentes en Astro",
-            description: "Generación acelerada de estructuras modulares para el portafolio y transiciones entre proyectos."
-          },
-          {
-            stepNumber: "04",
-            title: "Pruebas de Rendimiento",
-            description: "Auditoría asistida de accesibilidad y Core Web Vitals para asegurar fluidez en cualquier navegador."
+            "stepNumber": "02",
+            "title": "Interactions & Motion",
+            "description": "Asistencia durante el desarrollo y refinamiento de animaciones e interacciones del sitio."
           }
         ]
       },
-      outcome: {
-        overview: "Se logró un rediseño web editorial y dinámico que consolida el posicionamiento de Pulpo Digital como agencia creativa de primer nivel, mostrando su portafolio con alto impacto visual y facilitando el contacto con clientes potenciales.",
-        keyPoints: [
-          "Identidad digital sólida con transiciones fluidas y armonía tipográfica.",
-          "Tiempos de carga mínimos a pesar del uso intensivo de video y fotografía en alta resolución.",
-          "Canal de contacto accesible y adaptado para clientes que buscan cotizaciones rápidas."
+      "outcome": {
+        "overview": "El resultado fue una renovación completa de la presencia digital de Pulpo Digital, desde el diseño de la experiencia hasta su implementación y publicación. La nueva propuesta sustituyó la estructura estática anterior por una experiencia visual más dinámica y alineada con la identidad actual de la agencia.",
+        "keyPoints": [
+          "Rediseño integral de la experiencia web.",
+          "Diseño e implementación realizados dentro del mismo proceso.",
+          "Incorporación de animaciones e interacciones.",
+          "Implementación responsive y publicación mediante Netlify."
         ]
       },
-      improvements: {
-        overview: "Próximas incorporaciones planificadas para enriquecer el portafolio del estudio:",
-        items: [
-          "Sistema de filtrado interactivo de proyectos por tipo de disciplina (branding, web, motion, 3D).",
-          "Visor interactivo de guías de estilo de marca con paletas de color y tipografía explorables.",
-          "Microinteracciones personalizadas en el cursor para navegación en dispositivos de escritorio."
+      "improvements": {
+        "overview": "",
+        "items": [
+          "INFORMATION ARCHITECTURE / Evolucionar hacia un sitio multipágina / Separaría el contenido en páginas específicas para servicios, proyectos y otras áreas de la agencia, permitiendo desarrollar mejor cada sección y reducir la dependencia de una única landing.",
+          "COMPONENT DESIGN / Rediseñar algunas cards / Revisaría determinados componentes para mejorar su jerarquía, consistencia visual y relación con el resto del sistema.",
+          "VISUAL REFINEMENT / Refinar detalles de interfaz / Realizaría una segunda pasada sobre espaciados, composición, estados e interacciones para conseguir una experiencia visual más consistente.",
+          "PROJECT STORYTELLING / Dar mayor profundidad a los proyectos / Aprovecharía la arquitectura multipágina para presentar los trabajos de la agencia con mayor contexto visual y explicar mejor cada proyecto."
         ]
       }
     }
