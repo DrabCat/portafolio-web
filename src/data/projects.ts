@@ -166,10 +166,10 @@ export const projects: Project[] = [
       improvements: {
         overview: "Revisar el producto después de su implementación permitió identificar oportunidades para simplificar el recorrido, reforzar la jerarquía del contenido y acercar las acciones principales a las necesidades del usuario.",
         items: [
-          "Priorizar el menú dentro del recorrido, colocándolo más cerca del inicio para reducir la distancia entre conocer el restaurante y explorar su oferta gastronómica.",
-          "Reducir la longitud de algunas secciones decorativas en móvil, reorganizando las ilustraciones de ingredientes en composiciones más compactas que conserven su valor visual sin extender innecesariamente el scroll.",
-          "Reforzar la jerarquía y consistencia entre secciones, manteniendo patrones más predecibles en el orden de títulos, textos, imágenes e ilustraciones.",
-          "Incorporar un acceso flotante a WhatsApp para mantener disponible el principal canal de contacto durante todo el recorrido, especialmente en dispositivos móviles."
+          "PRIORIDAD DEL CONTENIDO / Priorizar el menú dentro del recorrido, colocándolo más cerca del inicio para reducir la distancia entre conocer el restaurante y explorar su oferta gastronómica.",
+          "COMPOSICIÓN EN MÓVIL / Reducir la longitud de algunas secciones decorativas en móvil, reorganizando las ilustraciones de ingredientes en composiciones más compactas que conserven su valor visual sin extender innecesariamente el scroll.",
+          "JERARQUÍA Y CONSISTENCIA VISUAL / Reforzar la jerarquía y consistencia entre secciones, manteniendo patrones más predecibles en el orden de títulos, textos, imágenes e ilustraciones.",
+          "CONTACTO PERSISTENTE / Incorporar un acceso flotante a WhatsApp para mantener disponible el principal canal de contacto durante todo el recorrido, especialmente en dispositivos móviles."
         ]
       }
     }
