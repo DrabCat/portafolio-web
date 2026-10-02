@@ -1,0 +1,61 @@
+<div data-showreel class="space-y-4">
+  <div class="relative aspect-video overflow-hidden rounded-lg bg-neutral-900">
+    <video
+      data-showreel-video
+      class="block h-full w-full object-contain"
+      width="1920"
+      height="1080"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/assets/images/daniela-showreel-poster.jpg"
+      aria-label="Showreel de Michoacaníssimo, Eco-Orbit Adventures, BYRAL Solutions y Pulpo Digital"
+    >
+      <source src="/assets/videos/daniela-showreel-v2.webm" type="video/webm" />
+      <source src="/assets/videos/daniela-showreel-v2.mp4" type="video/mp4" />
+      Tu navegador no permite reproducir este video.
+    </video>
+    <button
+      data-showreel-toggle
+      type="button"
+      hidden
+      class="absolute bottom-3 right-3 rounded-full bg-black/75 px-4 py-2 text-sm text-white backdrop-blur-sm transition-colors hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      aria-label="Pausar showreel"
+    >Pausar</button>
+  </div>
+  <div class="flex justify-end">
+    <a href="/proyectos/" class="text-sm text-neutral-300 underline underline-offset-4 transition-colors hover:text-white">Ver proyectos</a>
+  </div>
+</div>
+
+<script>
+  function setupShowreel() {
+    const container = document.querySelector<HTMLElement>('[data-showreel]');
+    if (!container || container.dataset.ready) return;
+    const video = container.querySelector<HTMLVideoElement>('[data-showreel-video]');
+    const toggle = container.querySelector<HTMLButtonElement>('[data-showreel-toggle]');
+    if (!video || !toggle) return;
+    container.dataset.ready = 'true';
+    video.muted = true;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) video.pause();
+    function updateToggle() {
+      const label = video!.paused ? 'Reproducir' : 'Pausar';
+      toggle!.textContent = label;
+      toggle!.setAttribute('aria-label', `${label} showreel`);
+    }
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      if (video.paused) void video.play().catch(updateToggle);
+      else video.pause();
+    });
+    video.addEventListener('play', updateToggle);
+    video.addEventListener('pause', updateToggle);
+    updateToggle();
+    if (!reducedMotion.matches) void video.play().catch(updateToggle);
+  }
+  setupShowreel();
+  document.addEventListener('astro:page-load', setupShowreel);
+</script>

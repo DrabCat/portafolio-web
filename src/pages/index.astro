@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectGrid from '../components/ProjectGrid.astro';
-import { projects } from '../data/projects';
+import HomeShowreel from '../components/HomeShowreel.astro';
 ---
 
 <Layout title="Inicio" currentPath="/">
@@ -15,9 +14,9 @@ import { projects } from '../data/projects';
           Diseño productos y experiencias digitales desde la idea hasta su implementación, combinando UX/UI, desarrollo web y trabajo en equipo.
       </h2>
     </section>
-    <!-- Galería de 4 Proyectos -->
+    <!-- Showreel aprobado -->
     <section class="pb-12">
-      <ProjectGrid projects={projects} />
+      <HomeShowreel />
     </section>
   </div>
 </Layout>
