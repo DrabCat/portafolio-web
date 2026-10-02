@@ -51,21 +51,28 @@ const caseStudy = project.caseStudy;
 
     <!-- Layout Principal del Proyecto con Navegación Sticky en Escritorio -->
     <div class="pt-2">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+      <div id="project-content-layout"
+          class="grid grid-cols-1 gap-8 items-start">
         
         <!-- Columna Izquierda: Sticky en Desktop (Tabs + Índice del Caso) -->
-        <aside class="lg:col-span-3 lg:sticky lg:top-[104px] lg:self-start lg:max-h-[calc(100vh-116px)] lg:overflow-y-auto no-scrollbar space-y-6">
+        <aside
+            id="project-sidebar"
+            class="space-y-6"
+          >
           <!-- Pestañas SUMMARY | CASE STUDY -->
           <CaseStudyTabs defaultTab="summary" />
 
           <!-- Índice de navegación del estudio de caso en escritorio -->
-          <div id="desktop-case-study-nav" class="hidden lg:block pt-2">
+          <div id="desktop-case-study-nav" class="hidden pt-2">
             <CaseStudyNavigation mode="desktop" />
           </div>
         </aside>
 
         <!-- Columna Derecha: Contenido que se desplaza (SUMMARY o CASE STUDY) -->
-        <main class="lg:col-span-9 space-y-4 min-w-0">
+        <main
+              id="project-main-content"
+              class="space-y-4 min-w-0"
+            >
           
           <!-- PANEL 1: SUMMARY (Contenido y medios actuales con soporte para captions) -->
           <div id="tab-panel-summary" role="tabpanel" aria-labelledby="tab-btn-summary">

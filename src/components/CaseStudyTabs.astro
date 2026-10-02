@@ -18,7 +18,7 @@ const { defaultTab = 'summary' } = Astro.props;
       aria-selected={defaultTab === 'summary' ? 'true' : 'false'}
       aria-controls="tab-panel-summary"
       tabindex={defaultTab === 'summary' ? 0 : -1}
-      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-neutral-500"
+      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
     >
       SUMMARY
     </button>
@@ -29,7 +29,7 @@ const { defaultTab = 'summary' } = Astro.props;
       aria-selected={defaultTab === 'casestudy' ? 'true' : 'false'}
       aria-controls="tab-panel-casestudy"
       tabindex={defaultTab === 'casestudy' ? 0 : -1}
-      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-neutral-500"
+      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
     >
       CASE STUDY
     </button>
@@ -60,6 +60,9 @@ const { defaultTab = 'summary' } = Astro.props;
     const summaryPanel = document.getElementById('tab-panel-summary');
     const caseStudyPanel = document.getElementById('tab-panel-casestudy');
     const desktopCaseStudyNav = document.getElementById('desktop-case-study-nav');
+    const projectLayout = document.getElementById('project-content-layout');
+    const projectSidebar = document.getElementById('project-sidebar');
+    const projectMain = document.getElementById('project-main-content');
 
     if (!summaryBtn || !caseStudyBtn || !summaryPanel || !caseStudyPanel) return;
 
@@ -75,6 +78,16 @@ const { defaultTab = 'summary' } = Astro.props;
         summaryPanel?.classList.remove('hidden');
         caseStudyPanel?.classList.add('hidden');
         desktopCaseStudyNav?.classList.add('hidden');
+        projectLayout?.classList.remove('lg:grid-cols-12', 'lg:gap-14');
+        projectSidebar?.classList.remove(
+          'lg:col-span-3',
+          'lg:sticky',
+          'lg:top-[104px]',
+          'lg:self-start',
+          'lg:max-h-[calc(100vh-116px)]',
+          'lg:overflow-y-auto'
+        );
+        projectMain?.classList.remove('lg:col-span-9');
 
         if (updateHash) {
           history.replaceState(null, '', window.location.pathname);
