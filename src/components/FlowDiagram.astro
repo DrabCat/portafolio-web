@@ -24,11 +24,11 @@ const { title, steps = [], class: className = '' } = Astro.props;
   )}
 
   <!-- Contenedor adaptativo: Stepper conectado -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 relative">
     {steps.map((step, idx) => {
       const stepNum = step.stepNumber ?? String(idx + 1).padStart(2, '0');
       return (
-        <div class="relative p-5 rounded-xl bg-[#161616] border border-neutral-800/80 hover:border-neutral-700 transition-colors flex flex-col justify-between group">
+        <div class="relative p-6 rounded-xl bg-[#161616] border border-neutral-800/80 hover:border-neutral-700 transition-colors flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="font-editorial-mono text-xs font-bold text-neutral-400 group-hover:text-white transition-colors">
