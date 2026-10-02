@@ -154,11 +154,12 @@ export const projects: Project[] = [
         ]
       },
       outcome: {
-        overview: "Se desarrolló una plataforma web estática moderna, visualmente conectada con las raíces michoacanas y optimizada para la conversión rápida. Los usuarios pueden revisar la oferta gastronómica completa y enviar su orden directamente al restaurante con un solo toque.",
+        overview: "El resultado fue un sitio web responsive que renovó la presencia digital de Michoacaníssimo y convirtió el sitio en un canal funcional para consultar su propuesta gastronómica. La nueva experiencia centraliza el acceso al menú y facilita el paso entre explorar la oferta e iniciar contacto con el restaurante a través de WhatsApp.",
         keyPoints: [
-          "Navegación ágil del menú organizada por secciones claras y descriptivas.",
-          "Canal de pedido directo por WhatsApp sin barreras de registro de usuario.",
-          "Carga instantánea de página gracias a la arquitectura basada en componentes ligeros."
+          "Experiencia responsive adaptada a desktop y dispositivos móviles.",
+          "Menú integrado dentro del sitio con opción de consulta y descarga.",
+          "Acceso a WhatsApp para iniciar una conversación directa con el restaurante.",
+          "Diseño llevado a código y publicado como un producto web funcional."
         ]
       },
       improvements: {
