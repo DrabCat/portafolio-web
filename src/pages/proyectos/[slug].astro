@@ -234,7 +234,7 @@ const caseStudy = project.caseStudy;
                             const parts = item.split(' / ');
                             const hasCategory = parts.length > 1;
                             const category = hasCategory
-                              ? parts[0].toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase())
+                              ? parts[0].toLowerCase().replace(/(^|\s)\S/g, (letter) => letter.toUpperCase())
                               : undefined;
                             const points = hasCategory ? parts.slice(1) : [item];
 
