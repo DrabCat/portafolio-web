@@ -8,7 +8,7 @@ const { defaultTab = 'summary' } = Astro.props;
 
 <div class="border-b border-neutral-800/80 mb-8">
   <div
-    class="flex items-center gap-6 sm:gap-8 font-editorial-mono text-xs uppercase tracking-[0.2em]"
+    class="flex flex-nowrap items-center gap-6 sm:gap-8 font-editorial-mono text-xs uppercase tracking-[0.2em]"
     role="tablist"
     aria-label="Selector de vistas del proyecto"
   >
@@ -18,7 +18,7 @@ const { defaultTab = 'summary' } = Astro.props;
       aria-selected={defaultTab === 'summary' ? 'true' : 'false'}
       aria-controls="tab-panel-summary"
       tabindex={defaultTab === 'summary' ? 0 : -1}
-      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
+      class="case-study-tab-btn whitespace-nowrap shrink-0 py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
     >
       SUMMARY
     </button>
@@ -29,7 +29,7 @@ const { defaultTab = 'summary' } = Astro.props;
       aria-selected={defaultTab === 'casestudy' ? 'true' : 'false'}
       aria-controls="tab-panel-casestudy"
       tabindex={defaultTab === 'casestudy' ? 0 : -1}
-      class="case-study-tab-btn py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
+      class="case-study-tab-btn whitespace-nowrap shrink-0 py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
     >
       CASE STUDY
     </button>
@@ -61,11 +61,11 @@ const { defaultTab = 'summary' } = Astro.props;
     const caseStudyPanel = document.getElementById('tab-panel-casestudy');
     const desktopCaseStudyNav = document.getElementById('desktop-case-study-nav');
     const projectLayout = document.getElementById('project-content-layout');
-    const projectSidebar = document.getElementById('project-sidebar');
-    const projectMain = document.getElementById('project-main-content');
 
     if (!summaryBtn || !caseStudyBtn || !summaryPanel || !caseStudyPanel) return;
 
+    if (summaryBtn.dataset.tabsReady) return;
+    summaryBtn.dataset.tabsReady = 'true';
     const tabs = [summaryBtn, caseStudyBtn];
 
     function activateTab(target: 'summary' | 'casestudy', updateHash = true) {
@@ -78,19 +78,10 @@ const { defaultTab = 'summary' } = Astro.props;
         summaryPanel?.classList.remove('hidden');
         caseStudyPanel?.classList.add('hidden');
         desktopCaseStudyNav?.classList.add('hidden');
-        projectLayout?.classList.remove('lg:grid-cols-12', 'lg:gap-14');
-        projectSidebar?.classList.remove(
-          'lg:col-span-3',
-          'lg:sticky',
-          'lg:top-[104px]',
-          'lg:self-start',
-          'lg:max-h-[calc(100vh-116px)]',
-          'lg:overflow-y-auto'
-        );
-        projectMain?.classList.remove('lg:col-span-9');
+        projectLayout?.setAttribute('data-view', 'summary');
 
         if (updateHash) {
-          history.replaceState(null, '', window.location.pathname);
+          history.replaceState(null, '', window.location.pathname + window.location.search);
         }
       } else {
         caseStudyBtn?.setAttribute('aria-selected', 'true');
@@ -101,6 +92,7 @@ const { defaultTab = 'summary' } = Astro.props;
         caseStudyPanel?.classList.remove('hidden');
         summaryPanel?.classList.add('hidden');
         desktopCaseStudyNav?.classList.remove('hidden');
+        projectLayout?.setAttribute('data-view', 'casestudy');
 
         if (updateHash && !window.location.hash.includes('contexto') && !window.location.hash.includes('problema') && !window.location.hash.includes('ai-workflow') && !window.location.hash.includes('outcome') && !window.location.hash.includes('improvements')) {
           history.replaceState(null, '', '#casestudy');
@@ -139,22 +131,24 @@ const { defaultTab = 'summary' } = Astro.props;
 
     // Detectar hash en la URL para abrir el tab correspondiente
     const caseStudySectionHashes = ['#casestudy', '#contexto', '#problema', '#ai-workflow', '#outcome', '#improvements'];
-    const currentHash = window.location.hash;
-    if (caseStudySectionHashes.includes(currentHash)) {
-      activateTab('casestudy', false);
-      if (currentHash !== '#casestudy') {
-        const targetEl = document.querySelector(currentHash);
-        if (targetEl) {
-          setTimeout(() => {
-            targetEl.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
-        }
+    function syncFromHash() {
+      const currentHash = window.location.hash;
+      activateTab(caseStudySectionHashes.includes(currentHash) ? 'casestudy' : 'summary', false);
+      if (caseStudySectionHashes.includes(currentHash) && currentHash !== '#casestudy') {
+        requestAnimationFrame(() => {
+          const targetEl = document.getElementById(currentHash.slice(1));
+          const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          targetEl?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+        });
       }
-    } else {
-      activateTab('summary', false);
     }
-  }
 
+    syncFromHash();
+    const hashController = new AbortController();
+    window.addEventListener('hashchange', syncFromHash, { signal: hashController.signal });
+    window.addEventListener('popstate', syncFromHash, { signal: hashController.signal });
+    document.addEventListener('astro:before-swap', () => hashController.abort(), { once: true });
+  }
   document.addEventListener('DOMContentLoaded', setupProjectTabs);
   document.addEventListener('astro:page-load', setupProjectTabs);
 </script>

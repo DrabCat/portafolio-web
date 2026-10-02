@@ -51,7 +51,7 @@ const caseStudy = project.caseStudy;
 
     <!-- Layout Principal del Proyecto con Navegación Sticky en Escritorio -->
     <div class="pt-2">
-      <div id="project-content-layout"
+      <div id="project-content-layout" data-view="summary"
           class="grid grid-cols-1 gap-8 items-start">
         
         <!-- Columna Izquierda: Sticky en Desktop (Tabs + Índice del Caso) -->
@@ -119,7 +119,7 @@ const caseStudy = project.caseStudy;
           <!-- PANEL 2: CASE STUDY (Estructura UX/UI con 5 secciones) -->
           <div id="tab-panel-casestudy" role="tabpanel" aria-labelledby="tab-btn-casestudy" class="hidden">
             <!-- Barra horizontal sticky para dispositivos móviles (solo < lg) -->
-            <div class="lg:hidden mb-6">
+            <div class="mobile-case-study-nav lg:hidden mb-6">
               <CaseStudyNavigation mode="mobile" />
             </div>
 
@@ -253,7 +253,7 @@ const caseStudy = project.caseStudy;
                     class="group inline-flex flex-col items-center"
                   >
                     <span class="font-editorial-mono text-[10px] tracking-[0.25em] text-neutral-400 mb-4 uppercase">
-                      SIGUIENTE CASO DE ESTUDIO
+                      SIGUIENTE PROYECTO
                     </span>
 
                     <span class="font-editorial-mono text-xl md:text-2xl text-neutral-100 underline underline-offset-8 decoration-neutral-600 group-hover:decoration-neutral-100 transition-colors duration-300">
@@ -269,3 +269,41 @@ const caseStudy = project.caseStudy;
     </div>
   </article>
 </Layout>
+
+<style>
+  #desktop-case-study-nav { display: none; }
+
+  /* Fixed CSS rules keep both layouts available in production builds. */
+  @media (min-width: 64rem) {
+    #project-content-layout[data-view="casestudy"] {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 3.5rem;
+    }
+    #project-content-layout[data-view="casestudy"] #project-sidebar {
+      grid-column: span 3;
+      position: sticky;
+      top: 104px;
+      align-self: start;
+      max-height: calc(100vh - 116px);
+      overflow-y: auto;
+    }
+    #project-content-layout[data-view="casestudy"] :global(#project-sidebar [role="tablist"]) {
+      column-gap: clamp(0.5rem, calc(100% - 10.5rem), 2rem);
+    }
+    #project-content-layout[data-view="casestudy"] #project-main-content {
+      grid-column: span 9;
+    }
+    #project-content-layout[data-view="casestudy"] #desktop-case-study-nav {
+      display: block;
+    }
+  }
+
+  @media (max-width: 63.999rem) {
+    /* The wrapper, rather than its short child, must own sticky positioning. */
+    .mobile-case-study-nav {
+      position: sticky;
+      top: 73px;
+      z-index: 30;
+    }
+  }
+</style>

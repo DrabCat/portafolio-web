@@ -141,7 +141,16 @@ const sections: SectionItem[] = [
         if (id === activeId) {
           link.classList.add('is-active');
           // Auto-scroll en móvil para mantener visible el elemento activo
-          link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          const nav = link.closest('nav');
+          if (nav && nav.getClientRects().length > 0) {
+            const linkRect = link.getBoundingClientRect();
+            const navRect = nav.getBoundingClientRect();
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            nav.scrollTo({
+              left: nav.scrollLeft + linkRect.left - navRect.left - (nav.clientWidth - linkRect.width) / 2,
+              behavior: reducedMotion ? 'auto' : 'smooth',
+            });
+          }
         } else {
           link.classList.remove('is-active');
         }
@@ -171,6 +180,7 @@ const sections: SectionItem[] = [
     });
 
     function updateActiveSection() {
+      if (document.getElementById('tab-panel-casestudy')?.classList.contains('hidden')) return;
       const activationPoint = 180;
 
       let activeSection = sections[0];
