@@ -89,39 +89,39 @@ export const projects: Project[] = [
     description: "Michoacanissimo es un sitio web creado para presentar la identidad y propuesta gastronómica michoacana, destacando su tradición de más de 70 años, el objetivo del sitio era crear un espacio donde el usuario tuviera la posibilidad de explorar el menú y directamente hacer un pedido a través de WhatsApp",
     caseStudy: {
       contexto: {
-        overview: "Michoacaníssimo es un restaurante tradicional con más de siete décadas de trayectoria culinaria michoacana. El proyecto nace de la necesidad de establecer un canal digital propio que preserve la calidez y el valor artesanal de su cocina, trasladando su menú físico a una experiencia web accesible y moderna.",
+        overview: "Michoacaníssimo es un restaurante especializado en birria estilo Michoacán. El proyecto partió de una presencia web existente que se encontraba desactualizada, con problemas de optimización y sin responder adecuadamente a los estándares web actuales. El objetivo fue renovar este canal digital y convertirlo en un punto de contacto funcional para consultar la propuesta gastronómica y comunicarse con el restaurante.",
         dataCards: [
           {
-            value: "70+ Años",
-            label: "Tradición Familiar",
-            description: "Herencia culinaria reflejada en la narrativa visual del sitio."
+            value: "Rediseño Web",
+            label: "Presencia Digital",
+            description: "Actualización de una presencia web existente hacia una experiencia responsive y funcional."
           },
           {
             value: "WhatsApp",
-            label: "Canal de Pedidos",
-            description: "Enlace directo para ordenar sin comisiones de intermediarios."
+            label: "Canal de Contacto",
+            description: "Punto de contacto directo entre el sitio y el restaurante."
           },
           {
-            value: "Astro + Tailwind",
+            value: "HTML + CSS + JS",
             label: "Stack Front-End",
-            description: "Arquitectura estática ultra ligera orientada a alta velocidad."
+            description: "Implementación responsive del diseño para su publicación web."
           }
         ]
       },
       problema: {
-        overview: "A pesar de contar con una comunidad sólida de clientes presenciales, la marca carecía de una herramienta digital estructurada para comensales en línea. Los clientes debían solicitar el menú por mensajes en redes o consultar imágenes estáticas poco legibles en pantallas móviles, generando fricción y lentitud en la toma de pedidos.",
+        overview: "Michoacaníssimo ya contaba con un sitio web y un menú en formato digital, pero la implementación existente se encontraba desactualizada, con problemas de optimización y sin responder adecuadamente a los estándares web actuales. El reto no era digitalizar el contenido, sino renovar la presencia web para convertirla nuevamente en un canal funcional de consulta y contacto.",
         comparison: {
           leftTitle: "Desafío Inicial",
           leftContent: [
-            "Menús en formato de imagen no responsivos y pesados para cargar.",
-            "Consultas recurrentes de precios y disponibilidad por canales dispersos.",
-            "Abandono de pedidos por falta de un flujo de compra rápido y directo."
+            "Sitio web desactualizado y con problemas de optimización.",
+            "Experiencia que no respondía adecuadamente a los estándares actuales de navegación web.",
+            "El menú existía digitalmente, pero el sitio no funcionaba como un canal viable para consultarlo de forma autónoma."
           ],
           rightTitle: "Enfoque UX/UI",
           rightContent: [
-            "Estructura de menú categorizada con tipografía de alto contraste y legibilidad.",
-            "Acceso inmediato a la carta digital desde el primer scroll en cualquier dispositivo.",
-            "Acción clara de pedido que abre una conversación preformateada en WhatsApp."
+            "Renovación de la experiencia visual con una composición de enfoque editorial.",
+            "Integración del menú dentro del sitio con opciones para consultarlo y descargarlo.",
+            "Incorporación de WhatsApp como canal directo de contacto con el restaurante."
           ]
         }
       },
