@@ -126,7 +126,7 @@ export const projects: Project[] = [
         }
       },
       aiWorkflow: {
-        overview: "Durante el proceso de diseño y desarrollo, se implementaron flujos de asistencia con Inteligencia Artificial para acelerar tareas de estructuración, redacción y optimización técnica:",
+        overview: "Michoacaníssimo ya contaba con un sitio web y un menú en formato digital, pero la implementación existente se encontraba desactualizada, con problemas de optimización y sin responder adecuadamente a los estándares web actuales. El reto no era digitalizar el contenido, sino renovar la presencia web para convertirla nuevamente en un canal funcional de consulta y contacto.",
         flowSteps: [
           {
             stepNumber: "01",
