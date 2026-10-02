@@ -70,7 +70,7 @@ export const projects: Project[] = [
     year: "2026",
     context: "Sitio web gastronómico y tradicional",
     role: "Diseñadora web UX/UI",
-    tools: ["Astro", "Figma", "Tailwind CSS"],
+    tools: ["Figma", "HTML", "CSS", "JavaScript"],
     link: "https://michoacanissimo.com/",
     thumbnail: "/assets/images/michoacanissimo.png",
     previewVideo: "/assets/videos/michoacanissimo-preview.mp4",
