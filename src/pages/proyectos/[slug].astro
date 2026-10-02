@@ -59,7 +59,7 @@ const caseStudy = project.caseStudy;
             id="project-sidebar"
             class="space-y-6"
           >
-          <!-- Pestañas SUMMARY | CASE STUDY -->
+          <!-- Pestañas RESUMEN | CASO DE ESTUDIO -->
           <CaseStudyTabs defaultTab="summary" />
 
           <!-- Índice de navegación del estudio de caso en escritorio -->
@@ -68,13 +68,13 @@ const caseStudy = project.caseStudy;
           </div>
         </aside>
 
-        <!-- Columna Derecha: Contenido que se desplaza (SUMMARY o CASE STUDY) -->
+        <!-- Columna Derecha: Contenido que se desplaza (RESUMEN o CASO DE ESTUDIO) -->
         <main
               id="project-main-content"
               class="space-y-4 min-w-0"
             >
           
-          <!-- PANEL 1: SUMMARY (Contenido y medios actuales con soporte para captions) -->
+          <!-- PANEL 1: RESUMEN (Contenido y medios actuales con soporte para captions) -->
           <div id="tab-panel-summary" role="tabpanel" aria-labelledby="tab-btn-summary">
             <div class="space-y-16">
               <VideoShowcase 
@@ -116,7 +116,7 @@ const caseStudy = project.caseStudy;
             </div>
           </div>
 
-          <!-- PANEL 2: CASE STUDY (Estructura UX/UI con 5 secciones) -->
+          <!-- PANEL 2: CASO DE ESTUDIO (Estructura UX/UI con 5 secciones) -->
           <div id="tab-panel-casestudy" role="tabpanel" aria-labelledby="tab-btn-casestudy" class="hidden">
             <!-- Barra horizontal sticky para dispositivos móviles (solo < lg) -->
             <div class="mobile-case-study-nav lg:hidden mb-6">
@@ -169,10 +169,10 @@ const caseStudy = project.caseStudy;
                     )}
                   </CaseStudySection>
 
-                  <!-- 3. AI WORKFLOW -->
+                  <!-- 3. PROCESO CON IA -->
                   <CaseStudySection
                     id="ai-workflow"
-                    title="AI Workflow"
+                    title="Proceso con IA"
                     subtitle="Integración de herramientas de IA en el proceso de diseño"
                   >
                     <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
@@ -187,10 +187,10 @@ const caseStudy = project.caseStudy;
                     )}
                   </CaseStudySection>
 
-                  <!-- 4. OUTCOME -->
+                  <!-- 4. RESULTADO -->
                   <CaseStudySection
                     id="outcome"
-                    title="Outcome"
+                    title="Resultado"
                     subtitle="Solución entregada e impacto en la experiencia"
                   >
                     <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
@@ -214,10 +214,10 @@ const caseStudy = project.caseStudy;
                     )}
                   </CaseStudySection>
 
-                  <!-- 5. IMPROVEMENTS -->
+                  <!-- 5. MEJORAS -->
                   <CaseStudySection
                     id="improvements"
-                    title="Improvements"
+                    title="Mejoras"
                     subtitle="Iteraciones futuras y oportunidades de evolución"
                   >
                     <p class="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">

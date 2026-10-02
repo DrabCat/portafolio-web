@@ -139,14 +139,14 @@ export const projects: Project[] = [
           },
           {
             stepNumber: "02",
-            title: "Design to Code",
+            title: "Diseño a código",
             tool: "Antigravity",
             toolIcon: "/assets/icons/antigravity.svg",
             description: "Traducción del diseño visual a una primera implementación en HTML, CSS y JavaScript."
           },
           {
             stepNumber: "03",
-            title: "Code Refinement",
+            title: "Refinamiento de código",
             tool: "Codex",
             toolIcon: "/assets/icons/codex.svg",
             description: "Iteraciones técnicas, correcciones y ajustes sobre la implementación."
@@ -264,10 +264,10 @@ export const projects: Project[] = [
       "improvements": {
         "overview": "",
         "items": [
-          "PERFORMANCE / Reducir tiempos de carga / Optimizaría recursos visuales y elementos del sitio para reducir los tiempos de carga, especialmente en dispositivos móviles.",
-          "CONTENT PRIORITY / Mostrar los tours antes / Daría mayor prioridad a los tours dentro del recorrido inicial para reducir la distancia entre la llegada al sitio y la exploración de las experiencias disponibles.",
-          "PERSISTENT CONTACT / Integrar WhatsApp / Incorporaría WhatsApp como canal de contacto visible durante el recorrido para facilitar consultas antes de iniciar una reserva.",
-          "STORYTELLING / Reforzar la experiencia visual / Evolucionaría el diseño hacia una narrativa más inmersiva que comunique mejor la experiencia de aventura y el entorno de cada tour mediante fotografía, contenido y storytelling."
+          "RENDIMIENTO / Reducir tiempos de carga / Optimizaría recursos visuales y elementos del sitio para reducir los tiempos de carga, especialmente en dispositivos móviles.",
+          "PRIORIDAD DE CONTENIDO / Mostrar los tours antes / Daría mayor prioridad a los tours dentro del recorrido inicial para reducir la distancia entre la llegada al sitio y la exploración de las experiencias disponibles.",
+          "CONTACTO PERSISTENTE / Integrar WhatsApp / Incorporaría WhatsApp como canal de contacto visible durante el recorrido para facilitar consultas antes de iniciar una reserva.",
+          "NARRATIVA / Reforzar la experiencia visual / Evolucionaría el diseño hacia una narrativa más inmersiva que comunique mejor la experiencia de aventura y el entorno de cada tour mediante fotografía, contenido y narrativa."
         ]
       }
     }
@@ -293,7 +293,7 @@ export const projects: Project[] = [
       "/assets/videos/byral-solutions-video4.mp4"
     ],
     captions: [
-      "Landing page institucional con propuesta de valor centrada en automatización empresarial.",
+      "Página de destino institucional con propuesta de valor centrada en automatización empresarial.",
       "Módulos informativos que desglosan soluciones de inteligencia artificial e integraciones.",
       "Presentación de metodología de trabajo y beneficios tangibles para directivos y líderes.",
       "Formulario y puntos de contacto orientados a agendar llamadas de diagnóstico técnico."
@@ -349,9 +349,9 @@ export const projects: Project[] = [
           },
           {
             "stepNumber": "02",
-            "title": "UI Exploration",
+            "title": "Exploración de interfaz",
             "tool": "Figma Make",
-            "description": "Apoyo para explorar y desarrollar la primera versión de la landing a partir de la dirección visual definida."
+            "description": "Apoyo para explorar y desarrollar la primera versión de la página de destino a partir de la dirección visual definida."
           }
         ]
       },
@@ -367,10 +367,10 @@ export const projects: Project[] = [
       "improvements": {
         "overview": "",
         "items": [
-          "RESEARCH / Validar necesidades reales / Realizar investigación con potenciales usuarios y negocios para comprender qué problemas buscan resolver mediante automatización y qué información necesitan antes de contactar a un proveedor.",
-          "INFORMATION ARCHITECTURE / Replantear la estructura de servicios / Revisar la arquitectura de información conforme se consolide la oferta de BYRAL, priorizando los servicios y casos de uso más relevantes para el usuario.",
-          "VALUE COMMUNICATION / Explicar servicios mediante casos de uso / Evolucionar la comunicación desde descripciones generales hacia escenarios concretos que permitan entender qué proceso se automatiza, cómo funciona y qué valor aporta.",
-          "PRODUCT EVOLUTION / Integrar nuevos productos con mayor claridad / Definir cómo incorporar herramientas adicionales, como el generador de QR, sin diluir la propuesta principal ni generar una arquitectura de servicios fragmentada."
+          "INVESTIGACIÓN / Validar necesidades reales / Realizar investigación con potenciales usuarios y negocios para comprender qué problemas buscan resolver mediante automatización y qué información necesitan antes de contactar a un proveedor.",
+          "ARQUITECTURA DE INFORMACIÓN / Replantear la estructura de servicios / Revisar la arquitectura de información conforme se consolide la oferta de BYRAL, priorizando los servicios y casos de uso más relevantes para el usuario.",
+          "COMUNICACIÓN DE VALOR / Explicar servicios mediante casos de uso / Evolucionar la comunicación desde descripciones generales hacia escenarios concretos que permitan entender qué proceso se automatiza, cómo funciona y qué valor aporta.",
+          "EVOLUCIÓN DEL PRODUCTO / Integrar nuevos productos con mayor claridad / Definir cómo incorporar herramientas adicionales, como el generador de QR, sin diluir la propuesta principal ni generar una arquitectura de servicios fragmentada."
         ]
       }
     }
@@ -397,7 +397,7 @@ export const projects: Project[] = [
     ],
     captions: [
       "Página de inicio con identidad visual dinámica y microinteracciones de estilo editorial.",
-      "Showcase interactivo de casos de estudio de branding y diseño gráfico digital.",
+      "Presentación interactiva de casos de estudio de branding y diseño gráfico digital.",
       "Presentación de disciplinas creativas, desarrollo web y metodología de trabajo del estudio.",
       "Módulo de contacto y formulario para cotización y formalización de proyectos creativos."
     ],
@@ -418,7 +418,7 @@ export const projects: Project[] = [
           },
           {
             "value": "NETLIFY",
-            "label": "Deploy",
+            "label": "Publicación",
             "description": "Configuración y publicación del sitio para su lanzamiento web."
           }
         ]
@@ -446,12 +446,12 @@ export const projects: Project[] = [
         "flowSteps": [
           {
             "stepNumber": "01",
-            "title": "Design to Code",
+            "title": "Diseño a código",
             "description": "Traducción e iteración de componentes visuales durante la implementación del diseño."
           },
           {
             "stepNumber": "02",
-            "title": "Interactions & Motion",
+            "title": "Interacciones y movimiento",
             "description": "Asistencia durante el desarrollo y refinamiento de animaciones e interacciones del sitio."
           }
         ]
@@ -468,10 +468,10 @@ export const projects: Project[] = [
       "improvements": {
         "overview": "",
         "items": [
-          "INFORMATION ARCHITECTURE / Evolucionar hacia un sitio multipágina / Separaría el contenido en páginas específicas para servicios, proyectos y otras áreas de la agencia, permitiendo desarrollar mejor cada sección y reducir la dependencia de una única landing.",
-          "COMPONENT DESIGN / Rediseñar algunas cards / Revisaría determinados componentes para mejorar su jerarquía, consistencia visual y relación con el resto del sistema.",
-          "VISUAL REFINEMENT / Refinar detalles de interfaz / Realizaría una segunda pasada sobre espaciados, composición, estados e interacciones para conseguir una experiencia visual más consistente.",
-          "PROJECT STORYTELLING / Dar mayor profundidad a los proyectos / Aprovecharía la arquitectura multipágina para presentar los trabajos de la agencia con mayor contexto visual y explicar mejor cada proyecto."
+          "ARQUITECTURA DE INFORMACIÓN / Evolucionar hacia un sitio multipágina / Separaría el contenido en páginas específicas para servicios, proyectos y otras áreas de la agencia, permitiendo desarrollar mejor cada sección y reducir la dependencia de una única página de destino.",
+          "DISEÑO DE COMPONENTES / Rediseñar algunas tarjetas / Revisaría determinados componentes para mejorar su jerarquía, consistencia visual y relación con el resto del sistema.",
+          "REFINAMIENTO VISUAL / Refinar detalles de interfaz / Realizaría una segunda pasada sobre espaciados, composición, estados e interacciones para conseguir una experiencia visual más consistente.",
+          "NARRATIVA DE PROYECTOS / Dar mayor profundidad a los proyectos / Aprovecharía la arquitectura multipágina para presentar los trabajos de la agencia con mayor contexto visual y explicar mejor cada proyecto."
         ]
       }
     }

@@ -9,10 +9,10 @@ import { projects } from '../data/projects';
     <!-- Hero Minimalista con Animación de Entrada Suave -->
     <section class="py-12 md:py-20 max-w-4xl animate-fade-up">
       <h1 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-editorial-mono font-normal leading-[1.1] tracking-tight text-neutral-100">
-        Diseño y desarrollo experiencias digitales que convierten ideas en sitios web funcionales, intuitivos y orientados a resultados.
+        Entender los objetivos, diseñar experiencias intuitivas y llegar al <span data-nexo>nexo</span> enemigo. Esas son mis prioridades.
       </h1>
       <h2 class="font-editorial-mono text-base sm:text-lg font-normal leading-relaxed tracking-normal text-neutral-300 mt-4">
-          Soy Daniela, diseñadora web especializada en UX/UI, WordPress e implementación.
+          Diseño productos y experiencias digitales desde la idea hasta su implementación, combinando UX/UI, desarrollo web y trabajo en equipo.
       </h2>
     </section>
     <!-- Galería de 4 Proyectos -->
@@ -21,3 +21,34 @@ import { projects } from '../data/projects';
     </section>
   </div>
 </Layout>
+
+<style>
+  @media (min-width: 1024px) and (hover: hover) and (pointer: fine) and (any-pointer: fine) {
+    [data-nexo] { cursor: url('/cursors/teemo-mushroom.png') 18 18, auto; }
+  }
+  @media (any-pointer: coarse) {
+    [data-nexo] { cursor: auto; }
+  }
+</style>
+<script>
+  function setupNexo() {
+    const nexo = document.querySelector<HTMLElement>('[data-nexo]');
+    if (!nexo || nexo.dataset.ready) return;
+    nexo.dataset.ready = 'true';
+    const desktop = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine) and (any-pointer: fine)');
+    const audio = new Audio('/audio/teemo_4.mp3');
+    audio.preload = 'none';
+    audio.loop = false;
+    let lastPointer = '';
+    nexo.addEventListener('pointerenter', (event) => { lastPointer = event.pointerType; });
+    nexo.addEventListener('mouseenter', () => {
+      if (!desktop.matches || window.matchMedia('(any-pointer: coarse)').matches || lastPointer !== 'mouse') return;
+      audio.pause();
+      audio.currentTime = 0;
+      void audio.play().catch(() => { /* Decorative sound may be blocked by browser policy. */ });
+    });
+    document.addEventListener('astro:before-swap', () => { audio.pause(); }, { once: true });
+  }
+  setupNexo();
+  document.addEventListener('astro:page-load', setupNexo);
+</script>
