@@ -229,16 +229,27 @@ const caseStudy = project.caseStudy;
                         <span class="block text-[11px] font-editorial-mono uppercase tracking-[0.2em] text-neutral-400 mb-2">
                           Líneas de Mejora e Iteración
                         </span>
-                        <ul class="space-y-2.5">
-                          {caseStudy.improvements.items.map((item, idx) => (
-                            <li class="flex items-start gap-3 text-sm text-neutral-300">
-                              <span class="font-editorial-mono text-xs text-neutral-500 font-semibold shrink-0 mt-0.5">
-                                {String(idx + 1).padStart(2, '0')}.
-                              </span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <div class="space-y-6">
+                          {caseStudy.improvements.items.map((item) => {
+                            const parts = item.split(' / ');
+                            const hasCategory = parts.length > 1;
+                            const category = hasCategory
+                              ? parts[0].toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase())
+                              : undefined;
+                            const points = hasCategory ? parts.slice(1) : [item];
+
+                            return (
+                              <div class="space-y-2">
+                                {category && (
+                                  <h3 class="text-sm font-medium text-neutral-200">{category}</h3>
+                                )}
+                                <ul class="list-disc pl-5 space-y-2 text-sm text-neutral-300 leading-relaxed">
+                                  {points.map((point) => <li>{point}</li>)}
+                                </ul>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
                   </CaseStudySection>
