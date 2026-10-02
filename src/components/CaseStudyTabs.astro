@@ -32,11 +32,25 @@ const { defaultTab = 'summary' } = Astro.props;
       class="case-study-tab-btn whitespace-nowrap shrink-0 py-3 border-b-2 font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500"
     >
       CASO DE ESTUDIO
+      <img class="case-study-hint" src="/assets/images/click-para-saber-mas-white.png" alt="" aria-hidden="true" width="1536" height="1024" draggable="false" />
     </button>
   </div>
 </div>
 
 <style>
+  #tab-btn-casestudy { position: relative; }
+  .case-study-hint { display: none; pointer-events: none; user-select: none; }
+  @media (min-width: 1024px) {
+    #tab-btn-casestudy[aria-selected="false"] .case-study-hint {
+      display: block;
+      position: absolute;
+      width: 120px;
+      max-width: none;
+      height: auto;
+      left: calc(100% + 2px);
+      top: -44px;
+    }
+  }
   .case-study-tab-btn[aria-selected="true"] {
     color: #ffffff;
     font-weight: 700;
