@@ -3,6 +3,8 @@ export interface FlowStep {
   stepNumber?: string | number;
   title: string;
   description?: string;
+  tool?: string;
+  toolIcon?: string;
 }
 
 interface Props {
@@ -38,6 +40,21 @@ const { title, steps = [], class: className = '' } = Astro.props;
                 </span>
               )}
             </div>
+            {step.tool && (
+              <div class="flex items-center gap-2 mb-3">
+                {step.toolIcon && (
+                  <img
+                    src={step.toolIcon}
+                    alt=""
+                    class="w-5 h-5 object-contain"
+                    loading="lazy"
+                  />
+                )}
+                <span class="font-editorial-mono text-[10px] uppercase tracking-[0.15em] text-neutral-500">
+                  {step.tool}
+                </span>
+              </div>
+            )}
             <h5 class="font-editorial-mono text-sm font-medium text-neutral-200 group-hover:text-white transition-colors mb-2">
               {step.title}
             </h5>

@@ -15,6 +15,8 @@ export interface FlowStep {
   stepNumber?: string | number;
   title: string;
   description?: string;
+  tool?: string;
+  toolIcon?: string;
 }
 
 export interface CaseStudyData {
@@ -126,27 +128,28 @@ export const projects: Project[] = [
         }
       },
       aiWorkflow: {
-        overview: "Michoacaníssimo ya contaba con un sitio web y un menú en formato digital, pero la implementación existente se encontraba desactualizada, con problemas de optimización y sin responder adecuadamente a los estándares web actuales. El reto no era digitalizar el contenido, sino renovar la presencia web para convertirla nuevamente en un canal funcional de consulta y contacto.",
+        overview: "La inteligencia artificial se incorporó después de definir el diseño de la interfaz, como herramienta de apoyo para la redacción y la transición del diseño a código. La dirección visual y las decisiones de diseño se desarrollaron previamente.",
         flowSteps: [
           {
             stepNumber: "01",
-            title: "Taxonomía de Contenido",
-            description: "Clasificación asistida por IA de especialidades gastronómicas e ingredientes principales para definir la navegación del menú."
+            title: "Microcopy",
+            tool: "ChatGPT",
+            toolIcon: "/assets/icons/chatgpt.svg",
+            description: "Apoyo para desarrollar y refinar textos y llamadas a la acción del sitio."
           },
           {
             stepNumber: "02",
-            title: "Wireframing y Layout",
-            description: "Exploración de composiciones en Figma para balancear la fotografía artesanal con llamadas a la acción claras."
+            title: "Design to Code",
+            tool: "Antigravity",
+            toolIcon: "/assets/icons/antigravity.svg",
+            description: "Traducción del diseño visual a una primera implementación en HTML, CSS y JavaScript."
           },
           {
             stepNumber: "03",
-            title: "Microcopy de Conversión",
-            description: "Refinamiento de textos para llamadas a la acción y plantillas de mensaje directo para WhatsApp."
-          },
-          {
-            stepNumber: "04",
-            title: "Generación Front-End",
-            description: "Soporte de IA en la estructuración de componentes reutilizables y utilidades CSS en Astro."
+            title: "Code Refinement",
+            tool: "Antigravity",
+            toolIcon: "/assets/icons/antigravity.svg",
+            description: "Iteraciones técnicas, correcciones y ajustes sobre la implementación."
           }
         ]
       },
