@@ -171,6 +171,7 @@ export const projects: Project[] = [
         "Incorporar un acceso flotante a WhatsApp para mantener disponible el principal canal de contacto durante todo el recorrido, especialmente en dispositivos móviles."
       ]
     },
+    } 
   {
     name: "ECO ORBIT ADVENTURES",
     client: "Eco-Orbit Adventures",
